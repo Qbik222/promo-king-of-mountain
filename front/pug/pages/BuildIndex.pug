@@ -1,31 +1,171 @@
-.land
-    .land__logo
-        img(src="./img/logo.png" alt="favbet")
-    //.land__left
-    //    .land__title До нових висот з бонусом*
-    //    .land__prize 15 000₴
-    //    .land__spins + 300 фрiспiнiв
-    //    .land__btn хапай штурвал
-    //.land__right
-    //    .land__right-pers
-    //        img(src="./img/pers.png" alt="favbet")
-    //    .land__right-plane
-    //        img(src="./img/plane.png" alt="favbet")
-.footer
-    .footer__text  ТОВ «БУКМЕКЕРСЬКА КОМПАНІЯ «ФАВБЕТ». Ліцензія на провадження діяльності з організації та проведення букмекерської діяльності від 28.12.2022, видана згідно з рішенням КРАІЛ № 433 від 13.12.2022 та Ліцензія на провадження діяльності з організації та проведення азартних ігор казино в мережі Інтернет від 20.04.2021, видана згідно з рішенням КРАІЛ № 137 від 05.04.2021, зі змінами.
-    .footer__wrap
-        ul.footer__licensed
-            li.footer__licensed-item
-                img(src="./img/age.svg" alt="favbet")
-            li.footer__licensed-item
-                img(src="./img/applePay.svg" alt="favbet")
-            li.footer__licensed-item
-                img(src="./img/googlePay.svg" alt="favbet")
-            li.footer__licensed-item
-                img(src="./img/visa.svg" alt="favbet")
-            li.footer__licensed-item
-                img(src="./img/mastercard.svg" alt="favbet")
-        .footer__btns
-            a(href="https://apps.apple.com/ua/app/favbet-ua/id1580749519" target="_blank").footer__appstore
-            a(href="https://favbet.ua/minio/android-files/FavbetUA.apk" target="_blank").footer__googlePlay
-.legal УЧАСТЬ В АЗАРТНИХ ІГРАХ МОЖЕ ВИКЛИКАТИ ІГРОВУ ЗАЛЕЖНІСТЬ. ДОТРИМУЙТЕСЯ ПРАВИЛ (ПРИНЦИПІВ) ВІДПОВІДАЛЬНОЇ ГРИ
+button.open-btn open
+.fav-page
+    .welcome
+        .fav-wrap
+            .welcome__top
+                img(src="./img/welcome/ball.png" alt="favbet")
+            .welcome__title
+                picture
+                    source(media="(max-width: 600px) and (orientation: portrait)" srcset="./img/welcome/title-mob.png")
+                    source(media="(max-width: 950px) and (orientation: landscape) and (max-height: 450px)" srcset="./img/welcome/title-mob.png")
+                    source(media="(min-width: 601px) and (max-width: 1050px) and (orientation: portrait)" srcset="./img/welcome/title-mob.png")
+                    source(media="(min-width: 601px) and (orientation: landscape)" srcset="./img/welcome/title-desc.png")
+                    img(src="./img/welcome/title-desc.png" alt="Favbet")
+            .welcome__decor
+            .welcome__bonus
+                .welcome__bonus-prize #[span.welcome__bonus-prize-item(data-translate="welcomePrize") 10 000 ]
+                .welcome__bonus-text(data-translate="welcomeText") #[span.welcome__bonus-text-item(data-translate="welcomeText") щоденно ]
+            .welcome__btn.btn.part-btn(data-translate="partBtn") взяти участь
+    .bonus
+        .fav-wrap
+            .bonus__title(data-translate="bonusTitle") Щоденні бонуси
+            .bonus__subtitle(data-translate="bonusSubtitle").
+                З 21 по 30 січня 2025 року роби виграшні ставки на кіберспортивний
+                турнір «CCT» з дисципліни «CS2». Проходь 3 рівні складності та отримуй
+                3 гарантовані бонуси за кожен рівень.
+            .bonus__top
+                .bonus__progress
+                    .bonus__progress-title(data-translate="progressTitle") твій прогресс #[span.bonus__progress-title-btn ]
+                    .bonus__progress-center
+                        .bonus__progress-lvl._done #[span.lvl-1 1] #[span(data-translate="level") рівень]
+                        .bonus__progress-lvl._active #[span.lvl-2 2] #[span(data-translate="level") рівень]
+                        .bonus__progress-lvl #[span.lvl-3 3] #[span(data-translate="level") рівень]
+                    .bonus__progress-bottom(data-translate="progressText").
+                        Ти на першому рівні. Щоб пройти його та отримати бонус треба зробити 999 виграшних ставок.
+                .bonus__bets
+                    .bonus__bets-title(data-translate="bonusBets") виграшні <br> ставки
+                    .bonus__bets-info #[span.bonus__bets-info-item 0] #[span.bonus__bets-info-item 4]
+            .bonus__boxes
+                .bonus__boxes-item
+                    .box
+                        .box__cap
+                            .box__cap-front
+                            .box__cap-back
+                        .box__inside
+                        .box__body
+                    //.bonus__boxes-prize
+                    //    .bonus__boxes-prize-top(data-translate="boxesText")
+                    //    .bonus__boxes-prize-bottom(data-translate="boxesPrize")
+                .bonus__boxes-item
+                    .box
+                        .box__cap
+                            .box__cap-front
+                            .box__cap-back
+                        .box__inside
+                        .box__body
+                    //.bonus__boxes-prize
+                    //    .bonus__boxes-prize-top(data-translate="boxesText")
+                    //    .bonus__boxes-prize-bottom(data-translate="boxesPrize")
+                .bonus__boxes-item
+                    .box
+                        .box__cap
+                            .box__cap-front
+                            .box__cap-back
+                        .box__inside
+                        .box__body
+                    //.bonus__boxes-prize
+                    //    .bonus__boxes-prize-top(data-translate="boxesText")
+                    //    .bonus__boxes-prize-bottom(data-translate="boxesPrize")
+                //.bonus__boxes-item._active
+                //    .bonus__boxes-prize
+                //        .bonus__boxes-prize-top(data-translate="boxesText")
+                //        .bonus__boxes-prize-bottom(data-translate="boxesPrize")
+                //.bonus__boxes-item._lock
+                //    .bonus__boxes-prize
+                //        .bonus__boxes-prize-top(data-translate="boxesText")
+                //        .bonus__boxes-prize-bottom(data-translate="boxesPrize")
+            .bonus__btn.btn.get-btn(data-translate="getBtn") отримати приз
+            .bonus__upd
+                .bonus__upd-text
+                    span.bonus__upd-text-item(data-translate="lastUpd") Останнє оновлення було о
+                    span.last-upd xx:xx
+                .bonus__upd-btn
+            .bonus__warning(data-translate="bonusWarning").
+                Не панікуй якщо ставка вже розрахувалась, і
+                 невідобразилась на цій сторінці. Пам’ятай,
+                  що оновленнямапи прогресу може зайняти до 15 хв.
+            .drop
+                details.dropdown
+                    summary(data-translate="detailsBtn") Деталі
+                    .drop-txt
+                        .drop-txt-list
+                            p dsadasdasdass
+            .bonus__day
+                .bonus__day-title(data-translate="endDay") до кінця ігрового дня
+                .bonus__day-timer
+            .bonus__btn.btn.part-btn(data-translate="partBtn") взяти участь
+    .result
+        .fav-wrap
+            .result__title
+                picture
+                    source(media="(max-width: 600px) and (orientation: portrait)" srcset="./img/result/title-mob.png")
+                    source(media="(max-width: 950px) and (orientation: landscape) and (max-height: 450px)" srcset="./img/result/title-mob.png")
+                    source(media="(min-width: 601px) and (max-width: 1050px) and (orientation: portrait)" srcset="./img/result/title-mob.png")
+                    source(media="(min-width: 601px) and (orientation: landscape)" srcset="./img/result/title-desc.png")
+                    img(src="./img/result/title-desc.png" alt="Favbet")
+            .result__subtitle.
+                Коли всі рівні пройдені — змагайся з іншими учасниками
+                 за призові #[span 10 000 ₴*] та статус Володара Гори. Приз
+                 отримає тільки 1 гравець (з найбільшою кількістю
+                 виграшних ставок протягом ігрового дня). Пам’ятай,
+                 прогрес обнуляється щоденно о 00:00 за київським часом.
+            .result__table
+                .table
+                    .table__row(style="--columns: 1")
+                        .table__block._first
+                            .table__block-icon
+                                img(src="./img/table/icon.png" alt="Favbet")
+                            .table__block-info
+                                .table__block-place 1
+                                .table__block-id 123455
+                            .table__info-bets
+                                .table__info-bets-counter 06
+                                .table__info-bets-text(data-translate="bonusBets") виграшні ставки
+                    .table__row(style="--columns: 2")
+                        .table__block._second
+                            .table__block-icon
+                                img(src="./img/table/icon.png" alt="Favbet")
+                            .table__block-info
+                                .table__block-place 2
+                                .table__block-id 123455
+                            .table__info-bets
+                                .table__info-bets-counter 06
+                                .table__info-bets-text(data-translate="bonusBets") виграшні ставки
+                        .table__block._second
+                            .table__block-icon
+                                img(src="./img/table/icon.png" alt="Favbet")
+                            .table__block-info
+                                .table__block-place 3
+                                .table__block-id 123455
+                            .table__info-bets
+                                .table__info-bets-counter 06
+                                .table__info-bets-text(data-translate="bonusBets") виграшні ставки
+                    .table__row(style="--columns: 3")
+                        .table__block
+                            .table__block-icon
+                                img(src="./img/table/icon.png" alt="Favbet")
+                        .table__block._you
+                            .table__block-icon
+                                img(src="./img/table/icon-you.png" alt="Favbet")
+                            .table__block-info
+                                .table__block-place 3
+                                .table__block-id 123455
+                            .table__info-bets
+                                .table__info-bets-counter 06
+                                .table__info-bets-text(data-translate="bonusBets") виграшні ставки
+                        .table__block
+                            .table__block-icon
+                                img(src="./img/table/icon.png" alt="Favbet")
+                    .table__row(style="--columns: 4")
+                        .table__block
+                            .table__block-icon
+                                img(src="./img/table/icon.png" alt="Favbet")
+                        .table__block
+                            .table__block-icon
+                                img(src="./img/table/icon.png" alt="Favbet")
+                        .table__block
+                            .table__block-icon
+                                img(src="./img/table/icon.png" alt="Favbet")
+                        .table__block
+                            .table__block-icon
+                                img(src="./img/table/icon.png" alt="Favbet")
