@@ -92,7 +92,18 @@ button.open-btn open
                             p dsadasdasdass
             .bonus__day
                 .bonus__day-title(data-translate="endDay") до кінця ігрового дня
-                .bonus__day-timer
+                .timer
+                    .timer__hours
+                        span.timer__hours-item 0
+                        span.timer__hours-item 0
+                    span.timer__separator :
+                    .timer__minutes
+                        span.timer__minutes-item 0
+                        span.timer__minutes-item 0
+                    span.timer__separator :
+                    .timer__seconds
+                        span.timer__seconds-item 0
+                        span.timer__seconds-item 0
             .bonus__btn.btn.part-btn(data-translate="partBtn") взяти участь
     .result
         .fav-wrap
@@ -117,7 +128,7 @@ button.open-btn open
                                 img(src="./img/table/icon.png" alt="Favbet")
                             .table__block-info
                                 .table__block-place 1
-                                .table__block-id 123455
+                                .table__block-id id 100300268
                             .table__info-bets
                                 .table__info-bets-counter 06
                                 .table__info-bets-text(data-translate="bonusBets") виграшні ставки
@@ -127,7 +138,7 @@ button.open-btn open
                                 img(src="./img/table/icon.png" alt="Favbet")
                             .table__block-info
                                 .table__block-place 2
-                                .table__block-id 123455
+                                .table__block-id id 100300268
                             .table__info-bets
                                 .table__info-bets-counter 06
                                 .table__info-bets-text(data-translate="bonusBets") виграшні ставки
@@ -136,7 +147,7 @@ button.open-btn open
                                 img(src="./img/table/icon.png" alt="Favbet")
                             .table__block-info
                                 .table__block-place 3
-                                .table__block-id 123455
+                                .table__block-id id 100300268
                             .table__info-bets
                                 .table__info-bets-counter 06
                                 .table__info-bets-text(data-translate="bonusBets") виграшні ставки
@@ -144,12 +155,12 @@ button.open-btn open
                         .table__block
                             .table__block-icon
                                 img(src="./img/table/icon.png" alt="Favbet")
-                        .table__block._you
+                        .table__block.you
                             .table__block-icon
                                 img(src="./img/table/icon-you.png" alt="Favbet")
                             .table__block-info
-                                .table__block-place 3
-                                .table__block-id 123455
+                                .table__block-place 99
+                                .table__block-id(data-translate="yourPlace") твоє місце
                             .table__info-bets
                                 .table__info-bets-counter 06
                                 .table__info-bets-text(data-translate="bonusBets") виграшні ставки
@@ -169,3 +180,20 @@ button.open-btn open
                         .table__block
                             .table__block-icon
                                 img(src="./img/table/icon.png" alt="Favbet")
+                .result__btn.btn(data-translate="partBtn") Взяти участь
+                .result__table-nav
+                    .result__table-nav-item 29.01
+                    .result__table-nav-item._active 30.01
+                    .result__table-nav-item 31.01
+                    .result__table-nav-item 01.02
+                    .result__table-nav-item 02.02
+                    .result__table-nav-item 03.02
+                    .result__table-nav-item 04.02
+                    .result__table-nav-item 05.02
+                    .result__table-nav-item 06.02
+            .drop
+                details.dropdown
+                    summary(data-translate="detailsBtn") Деталі
+                    .drop-txt
+                        .drop-txt-list
+                            p dsadasdasdass
