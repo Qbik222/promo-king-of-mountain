@@ -1,4 +1,10 @@
-button.open-btn open
+button.menu-btn menu
+.menu-test
+    button.btn-lvl lvl-menu
+    .lvl-menu
+        button.lvl-1 lvl 1
+        button.lvl-2 lvl 2
+        button.lvl-3 lvl 3
 .fav-page
     .welcome
         .fav-wrap
@@ -27,11 +33,19 @@ button.open-btn open
                 .bonus__progress
                     .bonus__progress-title(data-translate="progressTitle") твій прогресс #[span.bonus__progress-title-btn ]
                     .bonus__progress-center
-                        .bonus__progress-lvl._done #[span.lvl-1 1] #[span(data-translate="level") рівень]
-                        .bonus__progress-lvl._active #[span.lvl-2 2] #[span(data-translate="level") рівень]
+                        .bonus__progress-lvl #[span.lvl-1 1] #[span(data-translate="level") рівень]
+                        .bonus__progress-lvl #[span.lvl-2 2] #[span(data-translate="level") рівень]
                         .bonus__progress-lvl #[span.lvl-3 3] #[span(data-translate="level") рівень]
                     .bonus__progress-bottom(data-translate="progressText").
                         Ти на першому рівні. Щоб пройти його та отримати бонус треба зробити 999 виграшних ставок.
+                    .bonus__progress-popup.hide
+                        .bonus__progress-popup-close
+                        .bonus__progress-popup-content(data-translate="progressPopup").
+                                Коли всі рівні пройдені — змагайся з іншими учасниками за призові
+                                10 000 ₴* та статус Володара Гори. Приз отримає тільки 1 гравець
+                                (з найбільшою кількістю виграшних ставок протягом ігрового дня).
+                                Пам’ятай, прогрес обнуляється щоденно о 00:00 за київським часом.
+
                 .bonus__bets
                     .bonus__bets-title(data-translate="bonusBets") виграшні <br> ставки
                     .bonus__bets-info #[span.bonus__bets-info-item 0] #[span.bonus__bets-info-item 4]
@@ -43,9 +57,9 @@ button.open-btn open
                             .box__cap-back
                         .box__inside
                         .box__body
-                    //.bonus__boxes-prize
-                    //    .bonus__boxes-prize-top(data-translate="boxesText")
-                    //    .bonus__boxes-prize-bottom(data-translate="boxesPrize")
+                        .box__prize
+                            .box__prize-top(data-translate="boxesText") бонус у вигляді
+                            .box__prize-bottom(data-translate="boxesPrize") 20 фріспінів
                 .bonus__boxes-item
                     .box
                         .box__cap
@@ -53,9 +67,9 @@ button.open-btn open
                             .box__cap-back
                         .box__inside
                         .box__body
-                    //.bonus__boxes-prize
-                    //    .bonus__boxes-prize-top(data-translate="boxesText")
-                    //    .bonus__boxes-prize-bottom(data-translate="boxesPrize")
+                        .box__prize
+                            .box__prize-top(data-translate="boxesText2") Бонус “Страховка ставки”
+                            .box__prize-bottom(data-translate="boxesPrize2") до 500 ₴
                 .bonus__boxes-item
                     .box
                         .box__cap
@@ -63,19 +77,19 @@ button.open-btn open
                             .box__cap-back
                         .box__inside
                         .box__body
-                    //.bonus__boxes-prize
-                    //    .bonus__boxes-prize-top(data-translate="boxesText")
-                    //    .bonus__boxes-prize-bottom(data-translate="boxesPrize")
-                //.bonus__boxes-item._active
-                //    .bonus__boxes-prize
-                //        .bonus__boxes-prize-top(data-translate="boxesText")
-                //        .bonus__boxes-prize-bottom(data-translate="boxesPrize")
-                //.bonus__boxes-item._lock
-                //    .bonus__boxes-prize
-                //        .bonus__boxes-prize-top(data-translate="boxesText")
-                //        .bonus__boxes-prize-bottom(data-translate="boxesPrize")
+                        .box__prize
+                            .box__prize-top(data-translate="boxesText") бонус у вигляді
+                            .box__prize-bottom(data-translate="boxesPrize3") 500 ₴ #[span на рахунок]
             .bonus__btn.btn.get-btn(data-translate="getBtn") отримати приз
             .bonus__upd
+
+                .bonus__upd-popup.hide
+                    .bonus__upd-popup-close
+                    .bonus__upd-popup-content(data-translate="progressPopup").
+                            Коли всі рівні пройдені — змагайся з іншими учасниками за призові
+                            10 000 ₴* та статус Володара Гори. Приз отримає тільки 1 гравець
+                            (з найбільшою кількістю виграшних ставок протягом ігрового дня).
+                            Пам’ятай, прогрес обнуляється щоденно о 00:00 за київським часом.
                 .bonus__upd-text
                     span.bonus__upd-text-item(data-translate="lastUpd") Останнє оновлення було о
                     span.last-upd xx:xx
@@ -109,11 +123,11 @@ button.open-btn open
         .fav-wrap
             .result__title
                 picture
-                    source(media="(max-width: 600px) and (orientation: portrait)" srcset="./img/result/title-mob.png")
-                    source(media="(max-width: 950px) and (orientation: landscape) and (max-height: 450px)" srcset="./img/result/title-mob.png")
-                    source(media="(min-width: 601px) and (max-width: 1050px) and (orientation: portrait)" srcset="./img/result/title-mob.png")
-                    source(media="(min-width: 601px) and (orientation: landscape)" srcset="./img/result/title-desc.png")
-                    img(src="./img/result/title-desc.png" alt="Favbet")
+                    source(media="(max-width: 600px) and (orientation: portrait)" srcset="./img/welcome/title-mob.png")
+                    source(media="(max-width: 950px) and (orientation: landscape) and (max-height: 450px)" srcset="./img/welcome/title-mob.png")
+                    source(media="(min-width: 601px) and (max-width: 1050px) and (orientation: portrait)" srcset="./img/welcome/title-tab.png")
+                    source(media="(min-width: 601px) and (orientation: landscape)" srcset="./img/welcome/title-desc.png")
+                    img(src="./img/welcome/title-desc.png" alt="Favbet")
             .result__subtitle.
                 Коли всі рівні пройдені — змагайся з іншими учасниками
                  за призові #[span 10 000 ₴*] та статус Володара Гори. Приз
@@ -181,16 +195,17 @@ button.open-btn open
                             .table__block-icon
                                 img(src="./img/table/icon.png" alt="Favbet")
                 .result__btn.btn(data-translate="partBtn") Взяти участь
-                .result__table-nav
-                    .result__table-nav-item 29.01
-                    .result__table-nav-item._active 30.01
-                    .result__table-nav-item 31.01
-                    .result__table-nav-item 01.02
-                    .result__table-nav-item 02.02
-                    .result__table-nav-item 03.02
-                    .result__table-nav-item 04.02
-                    .result__table-nav-item 05.02
-                    .result__table-nav-item 06.02
+                .result__table-nav-scroll
+                    .result__table-nav
+                        .result__table-nav-item 29.01
+                        .result__table-nav-item._active 30.01
+                        .result__table-nav-item 31.01
+                        .result__table-nav-item 01.02
+                        .result__table-nav-item 02.02
+                        .result__table-nav-item 03.02
+                        .result__table-nav-item 04.02
+                        .result__table-nav-item 05.02
+                        .result__table-nav-item 06.02
             .drop
                 details.dropdown
                     summary(data-translate="detailsBtn") Деталі

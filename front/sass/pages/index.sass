@@ -2,7 +2,7 @@ $blue: #000055
 $second-blue: #020344
 $dark-blue: #00003D
 $white: #ffffff
-$magenta: #FF267E
+$magenta: #D41C6A
 $green: #05C48A
 $dark-green: #0F5D5A
 $black: #1B1B1F
@@ -17,18 +17,32 @@ $font-roboto-cond-black-it: RobotoCondensed-BlackItalic, sans-serif
 $font-roboto-black-it: Roboto-BlackItalic, sans-serif
 $font-roboto-exbold: Roboto-ExtraBold, sans-serif
 
+.hidden
+  display: none !important
+
 .hide
   //display: none !important
   opacity: 0
   transition: opacity .2s linear
+  pointer-events: none
 
-.open-btn
+.menu-btn
   position: fixed
   top: 0
+  z-index: 10
+  left: 0
+
+.menu-test
+  display: flex
+  flex-direction: column
+  position: fixed
+  top: 25px
   left: 0
   z-index: 10
-  width: 50px
-  height: 20px
+
+.lvl-menu
+  display: flex
+  flex-direction: column
 
 body
   overscroll-behavior: none
@@ -44,6 +58,7 @@ body
   align-items: center
   overflow: hidden
   width: 100%
+  padding-bottom: 30px
   img
     max-width: 100%
     height: auto
@@ -57,6 +72,7 @@ body
   width: 100%
   max-width: 1150px
   margin: 0 auto
+  padding: 0 10px
 
 .btn
   background: rgba($green, .7)
@@ -129,6 +145,20 @@ body
       transform: translate(-50%, 0)
       //background: black
       background: linear-gradient(180deg, rgba(0, 0, 61, 0.00) 65%, #00003D 83%)
+    @media screen and (max-width: 950px)
+      background: url("../img/welcome/boxes-tab.png") no-repeat 0 0/contain
+      max-width: 768px
+      min-width: 768px
+      height: 490px
+      left: 49%
+      top: 0
+    @media screen and (max-width: 600px)
+      background: url("../img/welcome/boxes-mob.png") no-repeat 0 0/contain
+      max-width: 660px
+      min-width: 660px
+      height: 680px
+      left: 53%
+      top: 8px
   &__top
     max-width: 225px
   &__title
@@ -201,7 +231,7 @@ body
     z-index: 2
 
 .bonus
-  z-index: 2
+  z-index: 3
   padding: 40px 0 0 0
   display: flex
   flex-direction: column
@@ -227,12 +257,30 @@ body
       bottom: 0
       transform: translate(-50%, 0)
       z-index: 0
+      @media screen and (max-width: 600px)
+        background: url("../img/bonus/timer-bg-mob.png") repeat 0 0/contain
   &__title
     font-family: $font-roboto-black-it
     color: $white
-    text-shadow: 2px 2px 0px #D41C6A
+    text-shadow: 2px 2px 0px $magenta
     font-size: 36px
     text-transform: uppercase
+    &::before, &::after
+      content: ""
+      display: block
+      position: absolute
+      min-width: 780px
+      max-width: 780px
+      height: 1050px
+      background: url("../img/blue-decor.png") no-repeat 0 0/contain
+      z-index: 0
+      top: -280px
+    &::before
+      left: calc(50% - 870px)
+      transform: translate(-50%, 0) rotate(-172deg)
+    &::after
+      left: calc(50% + 870px)
+      transform: translate(-50%, 0) rotate(-13deg)
   &__subtitle
     font-family: $font-roboto-cond-bold
     font-size: 20px
@@ -251,7 +299,6 @@ body
     max-width: 400px
     position: relative
     padding: 12px 15px 9px 5px
-
     &::before, &::after
       content: ""
       display: block
@@ -288,7 +335,7 @@ body
       &._done, &._active
         filter: drop-shadow(0px 0px 8.059px rgba(255, 106, 169, 0.3)) drop-shadow(0px 0px 7.059px rgba(255, 106, 169, 0.2)) drop-shadow(0px 0px 2.059px rgba(255, 106, 169, 0.8))
         &::before
-          background: #D41C6A
+          background: $magenta
         &::after
           background: #FFC2DB
       &._active
@@ -356,6 +403,8 @@ body
         margin-left: 5px
         border-radius: 100%
         transition: all .4s ease-in-out
+        position: relative
+        bottom: 1px
         &:hover
           cursor: pointer
           //box-shadow: 0px 0px 5px $magenta
@@ -396,19 +445,31 @@ body
       font-size: 14px
       font-family: $font-roboto-cond-reg
       text-align: center
-      &::before
-        content: ""
-        display: block
+      //&::before
+      //  //content: ""
+      //  display: block
+      //  width: 100%
+      //  height: 100%
+      //  mask-image: url("../img/bonus/progress-bottom-mask.png")
+      //  mask-size: 100% 100%
+      //  mask-repeat: no-repeat
+      //  z-index: 0
+      //  position: absolute
+      //  left: 0
+      //  top: 0
+      //  background: rgba(#15A09B, .37)
+      &::after
+        background: url("../img/bonus/progress-bottom-mask.png") no-repeat 0 0/contain
         width: 100%
         height: 100%
-        mask-image: url("../img/bonus/progress-bottom-mask.png")
-        mask-size: 100% 100%
-        mask-repeat: no-repeat
-        z-index: 0
-        position: absolute
-        left: 0
+        content: ""
+        display: block
         top: 0
-        background: rgba(#15A09B, .37)
+        left: 0
+        z-index: -1
+        filter: drop-shadow(0px 1px 4.5px rgba(21, 250, 255, 0.60))
+        position: absolute
+
   &__bets
     display: flex
     position: relative
@@ -484,9 +545,13 @@ body
 
   &__boxes
     height: 325px
-    width: 700px
+    //width: 700px
+    min-width: 700px
+    max-width: 700px
     display: flex
     position: relative
+    justify-content: center
+    gap: 20px
     &::before
       content: ""
       display: block
@@ -494,7 +559,7 @@ body
       height: 160px
       position: absolute
       bottom: 25px
-      left: 46%
+      left: 51%
       transform: translate(-50%, 0)
       background: url("../img/bonus/boxes-ground.png") no-repeat 0 0/contain
       z-index: 0
@@ -502,46 +567,145 @@ body
       width: 210px
       height: 325px
       z-index: 1
-      //order: 2
-      //&._lock
-      //  filter: grayscale(100%)
-      //&:nth-child(1)
-      //  background: url("../img/bonus/box1/box-close.png") no-repeat 0 0/contain
-      //  //order: 1
-      //  &._active
-      //    background: url("../img/bonus/box1/box-open.png") no-repeat 0 0/contain
-      //    //order: 4
-      //&:nth-child(2)
-      //  background: url("../img/bonus/box2/box-close.png") no-repeat 0 0/contain
-      //  //order: 3
-      //  scale: 1.1
-      //  transform-origin: top center
-      //  &._active
-      //    background: url("../img/bonus/box2/box-open.png") no-repeat 0 0/contain
-      //    //order: 2
-      //&:nth-child(3)
-      //  background: url("../img/bonus/box3/box-close.png") no-repeat 0 0/contain
-      //  //order: 4
-      //  &._active
-      //    background: url("../img/bonus/box3/box-open.png") no-repeat 0 0/contain
-      //    //order: 2
+      order: 2
+      scale: .95
+      &._lock
+        filter: grayscale(100%)
+      &._active
+        scale: 1.1
+        transform-origin: top center
+        .box
+          &__body
+            top: 112px
+            left: 16px
+      &:nth-child(1)
+        .box
+          &__body
+            background: url("../img/bonus/box1-body-lock.png") no-repeat 0 0/contain
+        order: 1
+        &._active
+          order: 3
+          .box
+            &__body
+              background: url("../img/bonus/box-body1.png") no-repeat 0 0/contain
+
+      &:nth-child(2)
+        .box
+          &__body
+            background: url("../img/bonus/box2-body-lock.png") no-repeat 0 0/contain
+          //&__prize
+        order: 3
+        &._active
+          order: 2
+          .box
+            &__body
+              background: url("../img/bonus/box-body2.png") no-repeat 0 0/contain
+      &:nth-child(3)
+        .box
+          order: 4
+          &__body
+            background: url("../img/bonus/box3-body-lock.png") no-repeat 0 0/contain
+          &__prize
+            &-bottom
+              span
+                font-size: 14px
+
+        &._active
+          order: 2
+          .box
+            &__body
+              background: url("../img/bonus/box-body3.png") no-repeat 0 0/contain
+
+
+  &__progress, &__upd
+    position: relative
+    &-popup
+      padding: 27px 16px 20px 16px
+      max-width: 340px
+      min-width: 340px
+      position: absolute
+      z-index: 3
+      top: -20px
+      transition: opacity .2s ease-in-out
+      left: 50%
+      transform: translate(-50%, 0)
+      border-radius: 9px
+      border: 2px solid rgba(255, 200, 223, 0.30)
+      background: rgba(0, 0, 0, 0.9)
+      box-shadow: 0px 0px 6px 0px rgba(255, 106, 169, 0.80)
+      backdrop-filter: blur(1px)
+      &-content
+        color: $white
+        font-family: $font-roboto-cond-reg
+        font-size: 14px
+        line-height: 22px
+        max-height: 135px
+        overflow-y: auto
+        scrollbar-width: auto
+        &::-webkit-scrollbar-thumb
+          width: 2px
+          background: $green
+        &::-webkit-scrollbar
+          background: $white
+          border-radius: 5px
+          width: 2px
+        & > *
+          font-family: inherit
+      &-close
+        width: 20px
+        height: 20px
+        z-index: 4
+        position: absolute
+        top: 6px
+        right: 8px
+        background: url("../img/close-icon.png") no-repeat 0 0/contain
+        &:hover
+          cursor: pointer
   .box
     position: relative
     width: 100%
     height: 100%
-    perspective: 1000px // Додає 3D ефект
+    perspective: 1000px
+    &._show
+      &::before
+        opacity: 1
+        transform: none
+      .box
+        &__body
+          z-index: 4
+        &__prize
+          z-index: 3
+          transform: none
+          opacity: 1
+    &::before
+      content: ""
+      display: block
+      position: absolute
+      filter: blur(5px)
+      background: radial-gradient(circle at 50% 50%, #ffffff 0%, rgba(255, 164, 189, 0.8) 30%, rgba(255, 38, 126, 0.6) 50%, rgba(116, 23, 151, 0.3) 75%, rgba(0, 0, 85, 0) 100%)
+      //background: radial-gradient(circle at 50% 50%, #ffffff, #ffa4bd, #ff267e, #741797, #000055)
+      width: 100px
+      height: 100px
+      bottom: 150px
+      left: 45px
+      border-radius: 50%
+      opacity: 0
+      z-index: 2
+      transform: translate(0, 50%)
+      transition: all 1s ease-in-out
     &__cap
       position: absolute
-      width: 165px
+      width: 169px
       height: 30px
       top: 96px
-      left: 20px
+      left: 19px
       z-index: 3
       transform-origin: top center
       transition: transform 1s ease-in-out
       transform-style: preserve-3d
       &.open
         transform: rotateX(100deg) rotateY(4deg) rotateZ(0) translate(0px, 0px)
+        z-index: 1
         //.box__cap-front
         //  transition: all .4s ease-in-out
         //  bottom: 20px
@@ -559,76 +723,62 @@ body
 
       &-front
         background: url("../img/bonus/box-cap-back.png") no-repeat center / contain
-        height: 24px
+        height: 40px
         transform-origin: right bottom
         top: auto
-        bottom: 0
-        filter: drop-shadow(0px 0px 19.715px rgba(255, 106, 169, 0.30)) drop-shadow(0px 0px 19.715px rgba(255, 106, 169, 0.20)) drop-shadow(0px 0px 19.715px rgba(255, 106, 169, 0.80))
+        bottom: -16px
 
       &-back
         width: 110%
         height: 90px
         background: url("../img/bonus/box-cap-front.png") no-repeat center / contain
         transform-origin: center bottom
-        transform: rotateY(180deg) rotateX(-30deg) scale(-1, -1) translate(7px, 53px)
-
-
-
-    //&__cap
-    //  position: absolute
-    //  width: 100px
-    //  height: 100px
-    //  perspective: 1000px
-    //  z-index: 2
-    //  &-front
-    //    //opacity: 0
-    //    background: url("../img/bonus/box-cap-front.png") no-repeat 0 0/contain
-    //    width: 165px
-    //    height: 90px
-    //    position: absolute
-    //    top: 28px
-    //    left: 39px
-    //    z-index: 2
-    //    //transform: rotateX(0) rotateY(0) rotateZ(0)
-    //    animation: caseOpen 1.5s linear
-    //    transition: all 1.5s linear
-    //    //transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg)
-    //    //transform: rotateX(90deg) rotateY(0deg) rotateZ(-20deg)
-    //    //transform: rotateX(90deg) rotateY(4deg) rotateZ(-13deg) translate(0px, 0px)
-    //    //transform: rotateX(100deg) rotateY(4deg) rotateZ(0) translate(0px, 0px)
-    //
-    //    transform-origin: bottom right
-    //    backface-visibility: hidden
-    //  &-back
-    //    //background: black
-    //    background: url("../img/bonus/box-cap-back.png") no-repeat 0 0/contain
-    //    width: 165px
-    //    height: 24px
-    //    position: absolute
-    //    top: 102px
-    //    left: 20px
-    //    z-index: 0
-    //    transition: all 1.5s linear
-    //    animation: backCap 1.5s linear
-    //    //transform: rotateX(86.5deg) rotateY(44deg) rotateZ(37deg) translate(0px, 0px)
-    //    transform: rotateX(60deg) rotateY(0deg) rotateZ(40deg) translate(0px, 0px)
-    //    transform-origin: right bottom
-    //    backface-visibility: hidden
+        //transform: rotateY(180deg) rotateX(-30deg) scale(-1, -1) translate(7px, 61px)
+        transform: rotateY(177deg) rotateX(-70deg) scale(-1, -1) translate(7px, 46px)
     &__inside
-      width: 210px
-      height: 240px
+      width: 165px
+      height: 40px
       position: absolute
-      left: 0
-      top: 0
+      left: 23px
+      top: 109px
       background: url("../img/bonus/box-inside.png") no-repeat 0 0/contain
+      filter: drop-shadow(0px 0px 19.715px rgba(255, 106, 169, 0.30)) drop-shadow(0px 0px 19.715px rgba(255, 106, 169, 0.20)) drop-shadow(0px 0px 19.715px rgba(255, 106, 169, 0.80))
+
     &__body
-      width: 210px
-      height: 240px
+      width: 176px
+      height: 130px
       position: absolute
-      left: 0
-      top: 0
-      z-index: 3
-      background: url("../img/bonus/box-body.png") no-repeat 0 0/contain
+      left: 15px
+      top: 114px
+      z-index: 2
+    &__prize
+      position: absolute
+      bottom: 210px
+      //height: 100%
+      width: fit-content
+      max-width: 145px
+      //max-height: 80px
+      transform: translate(0, 100%) scale(.2)
+      opacity: 0
+      transition: all .7s ease-in-out
+      left: 40px
+      padding: 18px 8px 14px
+      border-radius: 8px
+      border: 1.649px solid rgba(248, 225, 234, 0.70)
+      background: rgba(212, 30, 108, 0.02)
+      box-shadow: 0px 0px 8.291px 0px rgba(255, 106, 169, 0.80), 0px 0px 8.291px 0px rgba(255, 106, 169, 0.20), 0px 0px 8.291px 0px rgba(255, 106, 169, 0.30), 0px 0px 8.291px 0px rgba(255, 106, 169, 0.30), 0px 0px 8.291px 0px rgba(255, 106, 169, 0.30), 0px 0px 8.291px 0px rgba(255, 106, 169, 0.30), 0px 0px 8.291px 0px rgba(255, 106, 169, 0.30)
+      &-top, &-bottom
+        color: $white
+        font-family: $font-roboto-cond-black-it
+        text-align: center
+        text-transform: uppercase
+      &-top
+        font-size: 14px
+        text-shadow: 0px 0.824px 1.649px rgba(23, 27, 78, 0.20), 0px 1.649px 1.649px rgba(213, 18, 18, 0.49)
+
+      &-bottom
+        font-size: 20px
+
 
   &__upd
     display: flex
@@ -652,10 +802,13 @@ body
         color: $white
       .last-upd
         color: $magenta
+        margin-left: 5px
     &-btn
       width: 24px
       height: 24px
       background: url("../img/info-icon.png") no-repeat 0 0/contain
+      &:hover
+        cursor: pointer
   &__warning
     max-width: 705px
     padding: 24px
@@ -666,6 +819,22 @@ body
     border-radius: 8px
     background: rgba(255, 255, 255, 0.10)
     margin: 20px 0 25px
+    &::before, &::after
+      content: ""
+      display: block
+      position: absolute
+      min-width: 980px
+      max-width: 980px
+      height: 1250px
+      background: url("../img/pink-decor.png") no-repeat 0 0/contain
+      z-index: 0
+      bottom: -690px
+    &::before
+      left: calc(50% - 870px)
+      transform: translate(-50%, 0) rotate(-190deg)
+    &::after
+      left: calc(50% + 870px)
+      transform: translate(-50%, 0) rotate(13deg)
   &__day
     display: flex
     align-items: center
@@ -726,6 +895,7 @@ body
 
 
 
+
 details summary::-webkit-details-marker
   display: none
 
@@ -752,7 +922,7 @@ details summary::-webkit-details-marker
     font-family: $font-suisse-intl-reg
     font-size: 16px
     cursor: pointer
-    border: 2px solid #D41C6A
+    border: 2px solid $magenta
     background: rgba(213, 28, 106, 0.38)
     display: flex
     align-items: center
@@ -780,7 +950,7 @@ details summary::-webkit-details-marker
     max-height: 350px
     overflow-y: auto
     scrollbar-width: auto
-    border: 2px solid #D41C6A
+    border: 2px solid $magenta
     background: rgba(0, 0, 61, 0.79)
     box-shadow: 0px 0px 5.2px 0px #752981, 0px 0px 5.2px 0px #752981, 0px 0px 5.2px 0px #752981, 0px 0px 16.4px 0px #953FFF inset
     &::-webkit-scrollbar-thumb
@@ -862,7 +1032,13 @@ details summary::-webkit-details-marker
     left: 50%
     transform: translate(-50%, 0)
     background: url("../img/welcome/ball.png") no-repeat 0 0/contain
-    opacity: .3
+    opacity: .8
+    @media screen and (max-width: 950px)
+      background: url("../img/result/table-decor-mob.png") no-repeat 0 0/contain
+      width: 270px
+      height: 380px
+      top: 150px
+      opacity: .8
 
   &__title
     max-width: 790px
@@ -889,14 +1065,29 @@ details summary::-webkit-details-marker
     justify-content: center
     align-items: center
     &-nav
+      position: relative
       z-index: 2
       display: flex
       align-items: center
       justify-content: center
-      overflow: auto
-      max-width: 100%
-      margin: 30px 0 60px
+
+      max-width: 990px
+      min-width: 990px
       gap: 8px
+      &-scroll
+        margin: 30px 0 55px
+        overflow: auto
+        max-width: 100%
+        padding-bottom: 5px
+        scrollbar-width: auto
+        z-index: 2
+        &::-webkit-scrollbar
+          height: 2px
+          background: $white
+        &::-webkit-scrollbar-thumb
+          background: $green
+          border-radius: 5px
+
       &-item
         color: $white
         font-family: $font-roboto-cond-bold
@@ -941,7 +1132,7 @@ details summary::-webkit-details-marker
     height: 295px
     filter: blur(10px)
     position: absolute
-    bottom: -160px
+    bottom: -145px
     left: -180px
     z-index: 3
     border-radius: 100%
@@ -973,7 +1164,8 @@ details summary::-webkit-details-marker
       margin-top: 8px
       &-counter
         font-family: $font-roboto-cond-reg
-        color: $second-blue
+        //color: $second-blue
+        color: $white
         font-size: 24px
         margin-right: 7px
       &-text
@@ -982,7 +1174,8 @@ details summary::-webkit-details-marker
         text-transform: uppercase
         font-family: $font-roboto-cond-reg
         font-size: 10px
-        color: $second-blue
+        //color: $second-blue
+        color: $white
   &__block
     display: flex
     align-items: center
@@ -1096,6 +1289,10 @@ details summary::-webkit-details-marker
             &._five
               left: -2px
               font-size: 15px
+        &__info-bets
+          &-counter, &-text
+            color: $second-blue
+
 
 
 @keyframes shake

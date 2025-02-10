@@ -1,9 +1,44 @@
-const userPlace = document.querySelector(".you")
-const userTablePlace = userPlace.querySelector(".table__block-place")
+const userPlace = document.querySelector(".you"),
+      userTablePlace = userPlace.querySelector(".table__block-place"),
+      cases = document.querySelectorAll(".bonus__boxes-item"),
+      getBtn = document.querySelector(".get-btn"),
+      levels = document.querySelectorAll(".bonus__progress-lvl"),
+      progressPopup = document.querySelector(".bonus__progress-popup"),
+      progressPopupBtn = document.querySelector(".bonus__progress-title-btn"),
+      progressPopupClose = document.querySelector(".bonus__progress-popup-close"),
+      updPopup = document.querySelector(".bonus__upd-popup"),
+      updPopupBtn = document.querySelector(".bonus__upd-btn"),
+      updPopupClose = document.querySelector(".bonus__upd-popup-close");
+
+let currentLvl = sessionStorage.getItem("currentLvl") ? Number(sessionStorage.getItem("currentLvl")) : 1
+
+        function refreshLvl(currentLvl){
+    cases.forEach((box, i) =>{
+        if(++i === currentLvl) {
+            box.classList.add("_active")
+            setOpenCase(getBtn, box.querySelector(".box"))
+        }
+
+        i > currentLvl ? box.classList.add("_lock") : null
+    })
+
+    levels.forEach((box, i) =>{
+        if(++i === currentLvl) {
+            box.classList.add("_active")
+            setOpenCase(getBtn, box.querySelector(".box"))
+        }
+
+        i < currentLvl ? box.classList.add("_done") : null
+    })
+}
+
+refreshLvl(currentLvl)
+
+
 
 let idArr = userTablePlace.textContent.split("")
 
-console.log(idArr)
+// console.log(idArr)
 
 if(idArr.length === 1){
     userTablePlace.classList.add('_one')
@@ -22,18 +57,39 @@ if(idArr.length === 5){
     userTablePlace.classList.add('_five')
 }
 
-document.querySelector(".open-btn").addEventListener("click", () =>{
-    document.querySelector(".box").classList.toggle("shake")
-    // setTimeout(() =>{
-    //
-    // }, 1000)
-    document.querySelector(".box__cap").classList.toggle('open')
-    setTimeout(() =>{
-        document.querySelector(".box__cap-front").classList.toggle("hide")
-    }, 450)
+function setOpenCase (btn, box){
+    btn.addEventListener("click", () =>{
+        box.classList.add("shake")
+        box.querySelector(".box__cap").classList.add("open")
+        setTimeout(() =>{
+            box.querySelector(".box__cap-front").classList.add("hide")
+        }, 300)
+        setTimeout(() =>{
+            box.classList.add("_show")
+        }, 450)
+
+    })
+}
 
 
-})
+
+function setPopup(btnOpen, btnClose, popup){
+    btnOpen.addEventListener("click", () =>{
+        popup.classList.remove("hide")
+    })
+    btnClose.addEventListener("click", () =>{
+        popup.classList.add("hide")
+    })
+    document.addEventListener("click", (e) =>{
+        if(!popup.contains(e.target) && e.target !== btnOpen){
+            popup.classList.add("hide")
+        }
+    })
+}
+
+setPopup(progressPopupBtn, progressPopupClose, progressPopup)
+setPopup(updPopupBtn, updPopupClose, updPopup)
+
 function startCountdown(endTime) {
     const hoursEls = document.querySelectorAll(".timer__hours-item");
     const minutesEls = document.querySelectorAll(".timer__minutes-item");
@@ -74,4 +130,28 @@ const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 
 
 startCountdown(endOfDay);
 
+
+document.querySelector(".menu-btn").addEventListener("click", () =>{
+    document.querySelector(".menu-test").classList.toggle("hidden")
+})
+document.querySelector(".btn-lvl").addEventListener("click", () =>{
+    document.querySelector(".lvl-menu").classList.toggle("hidden")
+})
+
+const lvl1 = document.querySelector(".lvl-1")
+const lvl2 = document.querySelector(".lvl-2")
+const lvl3 = document.querySelector(".lvl-3")
+
+lvl1.addEventListener("click", () =>{
+    sessionStorage.setItem("currentLvl", "1")
+    window.location.reload()
+})
+lvl2.addEventListener("click", () =>{
+    sessionStorage.setItem("currentLvl", "2")
+    window.location.reload()
+})
+lvl3.addEventListener("click", () =>{
+    sessionStorage.setItem("currentLvl", "3")
+    window.location.reload()
+})
 
