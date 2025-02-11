@@ -558,12 +558,12 @@ body
   &__boxes
     height: 325px
     //width: 700px
-    min-width: 700px
-    max-width: 700px
+    min-width: 670px
+    max-width: 670px
     display: flex
     position: relative
-    justify-content: center
-    gap: 20px
+    justify-content: space-between
+    //gap: 20px
     &::before
       content: ""
       display: block
@@ -595,9 +595,19 @@ body
             opacity: 1
       &._lock
         filter: grayscale(100%)
+      &._left
+        position: absolute
+        left: 0
+      &._right
+        position: absolute
+        left: 100%
+        transform: translate(-100%, 0)
       &._active
         scale: 1.1
         transform-origin: top center
+        position: absolute
+        left: 50%
+        transform: translate(-50%, 0)
         .box
           &__body
             top: 112px
@@ -1311,11 +1321,11 @@ details summary::-webkit-details-marker
 
 @keyframes shake
   0%
-    transform: translateX(0)
+    transform: translateX(-50%)
   10%, 30%, 50%, 70%, 90%
-    transform: translateX(-5px) rotate(-2deg)
+    transform: translateX(-51%) rotate(-2deg)
   20%, 40%, 60%, 80%, 100%
-    transform: translateX(5px) rotate(2deg)
+    transform: translateX(-49%) rotate(2deg)
 
 .shake
   animation: shake 1s ease-in-out

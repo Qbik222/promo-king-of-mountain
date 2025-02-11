@@ -10,7 +10,7 @@ const userPlace = document.querySelector(".you"),
       updPopupBtn = document.querySelector(".bonus__upd-btn"),
       updPopupClose = document.querySelector(".bonus__upd-popup-close");
 
-let currentLvl = sessionStorage.getItem("currentLvl") ? Number(sessionStorage.getItem("currentLvl")) : 0
+let currentLvl = sessionStorage.getItem("currentLvl") ? Number(sessionStorage.getItem("currentLvl")) : 1
 
 let lvlStatus = false
 
@@ -26,24 +26,52 @@ function refreshLvl(currentLvl){
         console.log(i < currentLvl, i , currentLvl, lvl)
         i < currentLvl ? lvl.classList.add("_done") : null
     })
+
 }
 
-function refreshCases(currentLvl){
-    cases.forEach((box, i) =>{
-        if(++i === currentLvl) {
-            box.classList.add("_active")
+// function refreshCases(currentLvl) {
+//     cases.forEach((box, i) => {
+//         box.classList.remove("_active", "_left", "_right")
+//         if (++i === currentLvl) {
+//             box.classList.add("_active");
+//         } else {
+//             box.classList.remove("_active");
+//         }
+//
+//
+//         i !== currentLvl ? box.classList.add("_lock") : box.classList.remove("_lock");
+//
+//         currentLvl > cases.length ? cases[cases.length - 1].classList.remove("_lock") : null;
+//         currentLvl > cases.length ? cases[cases.length - 1].classList.add("_active") : null;
+//     });
+//
+// }
+
+
+function refreshCases(currentLvl) {
+    cases.forEach((box, i) => {
+        box.classList.remove("_active", "_left", "_right", "_lock");
+    });
+
+    let activeIndex = currentLvl - 1; // Перетворюємо рівень у індекс масиву
+    if (activeIndex >= cases.length) {
+        activeIndex = cases.length - 1;
+    }
+
+    let prevIndex = activeIndex - 1 < 0 ? cases.length - 1 : activeIndex - 1;
+    let nextIndex = activeIndex + 1 >= cases.length ? 0 : activeIndex + 1;
+
+    cases[activeIndex].classList.add("_active");
+    cases[prevIndex].classList.add("_left");
+    cases[nextIndex].classList.add("_right");
+
+    cases.forEach((box, i) => {
+        if (i !== activeIndex) {
+            box.classList.add("_lock");
         }
-        else{
-            box.classList.remove("_active")
-        }
-
-
-        i !== currentLvl  ? box.classList.add("_lock")  : box.classList.remove("_lock")
-
-        currentLvl > cases.length ? cases[cases.length - 1].classList.remove("_lock") : null
-        currentLvl > cases.length ? cases[cases.length - 1].classList.add("_active") : null
-    })
+    });
 }
+
 
 refreshCases(currentLvl)
 refreshLvl(currentLvl)
