@@ -107,6 +107,10 @@ body
   width: 100%
   position: relative
   z-index: 1
+  @media screen and (max-width: 950px)
+    background: url("../img/welcome/bg-tab.jpg") no-repeat 50% 0/cover
+  @media screen and (max-width: 600px)
+    background: url("../img/welcome/bg-mob.jpg") no-repeat 50% 0/cover
   &::before
     content: ""
     display: block
