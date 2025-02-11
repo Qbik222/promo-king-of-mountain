@@ -10,31 +10,62 @@ const userPlace = document.querySelector(".you"),
       updPopupBtn = document.querySelector(".bonus__upd-btn"),
       updPopupClose = document.querySelector(".bonus__upd-popup-close");
 
-let currentLvl = sessionStorage.getItem("currentLvl") ? Number(sessionStorage.getItem("currentLvl")) : 1
+let currentLvl = sessionStorage.getItem("currentLvl") ? Number(sessionStorage.getItem("currentLvl")) : 0
 
-        function refreshLvl(currentLvl){
-    cases.forEach((box, i) =>{
+let lvlStatus = false
+
+function refreshLvl(currentLvl){
+    levels.forEach((lvl, i) =>{
+        lvl.classList.remove("_active")
+        lvl.classList.remove("_done")
         if(++i === currentLvl) {
-            box.classList.add("_active")
-            setOpenCase(getBtn, box.querySelector(".box"))
+            lvl.classList.add("_active")
+        }else{
+            lvl.classList.remove("_active")
         }
-
-        i > currentLvl ? box.classList.add("_lock") : null
-    })
-
-    levels.forEach((box, i) =>{
-        if(++i === currentLvl) {
-            box.classList.add("_active")
-            setOpenCase(getBtn, box.querySelector(".box"))
-        }
-
-        i < currentLvl ? box.classList.add("_done") : null
+        console.log(i < currentLvl, i , currentLvl, lvl)
+        i < currentLvl ? lvl.classList.add("_done") : null
     })
 }
 
+function refreshCases(currentLvl){
+    cases.forEach((box, i) =>{
+        if(++i === currentLvl) {
+            box.classList.add("_active")
+        }
+        else{
+            box.classList.remove("_active")
+        }
+
+
+        i !== currentLvl  ? box.classList.add("_lock")  : box.classList.remove("_lock")
+
+        currentLvl > cases.length ? cases[cases.length - 1].classList.remove("_lock") : null
+        currentLvl > cases.length ? cases[cases.length - 1].classList.add("_active") : null
+    })
+}
+
+refreshCases(currentLvl)
 refreshLvl(currentLvl)
 
+function lvlUp(){
+    currentLvl = currentLvl + 1
+    sessionStorage.setItem("currentLvl", `${currentLvl}`)
+    refreshLvl(currentLvl)
+}
 
+function checkStatus(){
+    if(lvlStatus){
+        getBtn.classList.remove("_lock")
+        document.querySelector(".bonus__progress-lvl._active").classList.add("_up")
+    }
+}
+checkStatus()
+// getBtn.addEventListener("click", () =>{
+//     if(lvlStatus){
+//         lvlUp()
+//     }
+// })
 
 let idArr = userTablePlace.textContent.split("")
 
@@ -57,20 +88,34 @@ if(idArr.length === 5){
     userTablePlace.classList.add('_five')
 }
 
-function setOpenCase (btn, box){
-    btn.addEventListener("click", () =>{
-        box.classList.add("shake")
-        box.querySelector(".box__cap").classList.add("open")
-        setTimeout(() =>{
-            box.querySelector(".box__cap-front").classList.add("hide")
-        }, 300)
-        setTimeout(() =>{
-            box.classList.add("_show")
-        }, 450)
-
-    })
+function openCaseAnim(box){
+    box.classList.add("shake")
+    box.querySelector(".box__cap").classList.add("open")
+    setTimeout(() =>{
+        box.querySelector(".box__cap-front").classList.add("hide")
+    }, 300)
+    setTimeout(() =>{
+        box.classList.add("_show")
+    }, 450)
+    setTimeout(() =>{
+        lvlUp()
+        refreshCases(currentLvl)
+    }, 2000)
 }
 
+
+
+
+getBtn.addEventListener('click', () =>{
+    cases.forEach((box, i) =>{
+        if(box.classList.contains("_active")){
+            openCaseAnim(box)
+            getBtn.classList.add("_lock")
+        }
+
+    })
+
+})
 
 
 function setPopup(btnOpen, btnClose, popup){
@@ -141,6 +186,7 @@ document.querySelector(".btn-lvl").addEventListener("click", () =>{
 const lvl1 = document.querySelector(".lvl-1")
 const lvl2 = document.querySelector(".lvl-2")
 const lvl3 = document.querySelector(".lvl-3")
+const lvlUpBtn = document.querySelector(".lvl-up")
 
 lvl1.addEventListener("click", () =>{
     sessionStorage.setItem("currentLvl", "1")
@@ -153,5 +199,12 @@ lvl2.addEventListener("click", () =>{
 lvl3.addEventListener("click", () =>{
     sessionStorage.setItem("currentLvl", "3")
     window.location.reload()
+})
+
+lvlUpBtn.addEventListener("click", () =>{
+    lvlStatus = !lvlStatus
+    checkStatus()
+    lvlStatus = !lvlStatus
+
 })
 

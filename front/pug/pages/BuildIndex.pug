@@ -5,6 +5,7 @@ button.menu-btn menu
         button.lvl-1 lvl 1
         button.lvl-2 lvl 2
         button.lvl-3 lvl 3
+        button.lvl-up lvl up
 .fav-page
     .welcome
         .fav-wrap
@@ -33,9 +34,9 @@ button.menu-btn menu
                 .bonus__progress
                     .bonus__progress-title(data-translate="progressTitle") твій прогресс #[span.bonus__progress-title-btn ]
                     .bonus__progress-center
-                        .bonus__progress-lvl #[span.lvl-1 1] #[span(data-translate="level") рівень]
-                        .bonus__progress-lvl #[span.lvl-2 2] #[span(data-translate="level") рівень]
-                        .bonus__progress-lvl #[span.lvl-3 3] #[span(data-translate="level") рівень]
+                        .bonus__progress-lvl #[span.lvl-1 1] #[span(data-translate="level") рівень] #[span.lvl-bar]
+                        .bonus__progress-lvl #[span.lvl-2 2] #[span(data-translate="level") рівень] #[span.lvl-bar]
+                        .bonus__progress-lvl #[span.lvl-3 3] #[span(data-translate="level") рівень] #[span.lvl-bar]
                     .bonus__progress-bottom(data-translate="progressText").
                         Ти на першому рівні. Щоб пройти його та отримати бонус треба зробити 999 виграшних ставок.
                     .bonus__progress-popup.hide
@@ -80,7 +81,7 @@ button.menu-btn menu
                         .box__prize
                             .box__prize-top(data-translate="boxesText") бонус у вигляді
                             .box__prize-bottom(data-translate="boxesPrize3") 500 ₴ #[span на рахунок]
-            .bonus__btn.btn.get-btn(data-translate="getBtn") отримати приз
+            .bonus__btn.btn.get-btn._lock(data-translate="getBtn") отримати приз
             .bonus__upd
 
                 .bonus__upd-popup.hide

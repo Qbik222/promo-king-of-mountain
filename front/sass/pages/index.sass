@@ -89,6 +89,9 @@ body
   text-align: center
   padding: 14px 15px
   transition: all .4s ease-in-out
+  &._lock
+    filter: grayscale(100%)
+    pointer-events: none
   &:hover
     cursor: pointer
     background: rgba($green, .4)
@@ -332,29 +335,38 @@ body
       position: relative
       z-index: 2
       filter: drop-shadow(0px 0px 2px rgba(#05C7BF, .5))
+      span:nth-child(1)
+        z-index: 3
       &._done, &._active
         filter: drop-shadow(0px 0px 8.059px rgba(255, 106, 169, 0.3)) drop-shadow(0px 0px 7.059px rgba(255, 106, 169, 0.2)) drop-shadow(0px 0px 2.059px rgba(255, 106, 169, 0.8))
         &::before
           background: $magenta
         &::after
           background: #FFC2DB
+      .lvl-bar
+        display: block
+        position: absolute
+        mask-image: url("../img/bonus/progress-lvl-active-mask.png")
+        mask-repeat: no-repeat
+        mask-size: 100% 100%
+        //width: 67px
+        opacity: 0
+        width: 100px
+        height: 42px
+        right: 2px
+        bottom: 2px
+        background: #411528
+        transition: all .4s ease-in-out
+        z-index: 1
       &._active
-        span:nth-child(2)
-          &::before
-            content: ""
-            display: block
-            position: absolute
-            z-index: -1
-            mask-image: url("../img/bonus/progress-lvl-active-mask.png")
-            mask-repeat: no-repeat
-            mask-size: 100% 100%
-            width: 67px
-            height: 42px
-            right: -18px
-            bottom: -4px
-            background: #411528
-        span
-          z-index: 1
+        .lvl-bar
+          width: 67px
+          opacity: 1
+      &._up
+        .lvl-bar
+          width: 20px
+          opacity: 0
+
 
       &:not(:last-child)
         margin-right: -7px
@@ -569,6 +581,18 @@ body
       z-index: 1
       order: 2
       scale: .95
+      transition: all 1s ease-in-out
+      &._show
+        .box
+          &::before
+            opacity: 1
+            transform: none
+          &__body
+            z-index: 4
+          &__prize
+            z-index: 3
+            transform: none
+            opacity: 1
       &._lock
         filter: grayscale(100%)
       &._active
@@ -666,17 +690,7 @@ body
     width: 100%
     height: 100%
     perspective: 1000px
-    &._show
-      &::before
-        opacity: 1
-        transform: none
-      .box
-        &__body
-          z-index: 4
-        &__prize
-          z-index: 3
-          transform: none
-          opacity: 1
+
     &::before
       content: ""
       display: block
