@@ -24,8 +24,8 @@
 
 
   .bonus
-    &__warning
-      display: none
+    //&__warning
+    //  display: none
     &__upd
       margin-bottom: 20px
       z-index: 6
@@ -38,6 +38,7 @@
       margin-bottom: 55px
       &-bottom
         bottom: -8px
+        left: 50%
     &__bets
       padding: 7px 10px 7px 22px
       margin: 0 60px 0 auto
@@ -68,26 +69,7 @@
     &__table
       &-nav-scroll
         max-width: 730px
-        padding: 5px 15px
-        position: relative
-      &-nav
-        &::before, &::after
-          content: ""
-          display: block
-          min-height: 48px
-          min-width: 115px
-          position: sticky
-          //top: 0
-          pointer-events: none
-          z-index: 3
-        &::before
-          background: linear-gradient(273deg, rgba(0, 0, 61, 0) 65%, #00003D 83%)
-          left: -17px
-          margin-right: -90px
-        &::after
-          background: linear-gradient(90deg, rgba(0, 0, 61, 0) 65%, #00003D 83%)
-          right: -19px
-          margin-left: -100px
+
 
 @media screen and (max-width: 750px)
   .fav-wrap
@@ -119,8 +101,13 @@
       max-width: 345px
       margin: 5px 0 5px
   .bonus
+    &__warning
+      padding: 12px
+      font-size: 14px
+      line-height: 18px
     &__bets
-      margin: 5px 55px 0 auto
+      //margin: 5px 55px 0 auto
+      margin: 5px auto 0 auto
     &__subtitle
       font-size: 16px
       font-family: $font-roboto-cond-reg
@@ -137,6 +124,12 @@
       &-title
         font-size: 19px
         margin-bottom: 3px
+    &__upd
+      &-text
+        font-size: 14px
+      &-btn, &::before
+        width: 20px
+        height: 20px
   .table
     scale: .8
     transform-origin: left
@@ -154,12 +147,21 @@
     &__subtitle
       max-width: 95vw
       margin-top: 10px
+      &-popup
+        max-width: 95vw
 
 @media screen and (max-width: 390px)
   .bonus
     &__top
       scale: .9
       margin: 5px 0 -20px
+
+@media screen and (max-width: 365px)
+  .bonus
+    &__upd
+      &-text
+        font-size: 12px
+        white-space: nowrap
 
 @media screen and (max-width: 350px)
   .btn
@@ -177,6 +179,8 @@
   .bonus
     &__title
       font-size: 32px
+    &__upd
+      padding: 7px
   .result
     &__title
       max-width: 300px

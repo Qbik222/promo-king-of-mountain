@@ -1,59 +1,114 @@
 const userPlace = document.querySelector(".you"),
-      userTablePlace = userPlace.querySelector(".table__block-place"),
-      cases = document.querySelectorAll(".bonus__boxes-item"),
-      getBtn = document.querySelector(".get-btn"),
-      levels = document.querySelectorAll(".bonus__progress-lvl"),
-      progressPopup = document.querySelector(".bonus__progress-popup"),
-      progressPopupBtn = document.querySelector(".bonus__progress-title-btn"),
-      progressPopupClose = document.querySelector(".bonus__progress-popup-close"),
-      updPopup = document.querySelector(".bonus__upd-popup"),
-      updPopupBtn = document.querySelector(".bonus__upd-btn"),
-      updPopupClose = document.querySelector(".bonus__upd-popup-close");
+    userTablePlace = userPlace.querySelector(".table__block-place"),
+    cases = document.querySelectorAll(".bonus__boxes-item"),
+    getBtn = document.querySelector(".get-btn"),
+    levels = document.querySelectorAll(".bonus__progress-lvl"),
+    progressPopup = document.querySelector(".bonus__progress-popup"),
+    progressPopupBtn = document.querySelector(".bonus__progress-title-btn"),
+    progressPopupClose = document.querySelector(".bonus__progress-popup-close"),
+    updPopup = document.querySelector(".bonus__warning"),
+    updPopupBtn = document.querySelector(".bonus__upd-btn"),
+    resultPopup = document.querySelector(".result__subtitle-popup"),
+    resultPopupBtn = document.querySelector(".result__subtitle-btn"),
+    resultPopupBtnClose = document.querySelector(".result__subtitle-popup-close");
 
 let currentLvl = sessionStorage.getItem("currentLvl") ? Number(sessionStorage.getItem("currentLvl")) : 1
 
 let lvlStatus = false
+let betWinCounter = sessionStorage.getItem("betWinCounter") ? Number(sessionStorage.getItem("betWinCounter")) : 0
+let openCaseCounter = sessionStorage.getItem("openCaseCounter") ? Number(sessionStorage.getItem("openCaseCounter")) : 0
 
-function refreshLvl(currentLvl){
+// if(currentLvl === 1 && betWinCounter > 1 ){
+//     lvlStatus = true
+// }
+// if(currentLvl === 2 && betWinCounter > 3){
+//     lvlStatus = true
+// }
+// if(currentLvl === 3 && betWinCounter > 5){
+//     lvlStatus = true
+// }
+
+
+lvlStatus = checkStatus();
+
+function checkStatus() {
+    const activeLvl = document.querySelector(".bonus__progress-lvl._active");
+    const conditions = {
+        bet: {
+            1: betWinCounter > 1,
+            2: betWinCounter > 3,
+            3: betWinCounter > 5,
+        },
+        lvl: {
+            1: currentLvl === 1,
+            2: currentLvl === 2,
+            3: currentLvl === 3,
+        }
+
+    };
+    getBtn.classList.add("_lock");
+    if (conditions.bet[currentLvl] && conditions.lvl[currentLvl]) {
+        lvlStatus = true;
+        refreshLvl(currentLvl, lvlStatus);
+        getBtn.classList.remove("_lock");
+
+        if (activeLvl) activeLvl.classList.add("_up");
+
+        return lvlStatus;
+    }
+    lvlStatus = false;
+    refreshLvl(currentLvl, lvlStatus)
+    return false;
+}
+
+function refreshLvl(currentLvl, lvlStatus){
     levels.forEach((lvl, i) =>{
         lvl.classList.remove("_active")
         lvl.classList.remove("_done")
+        lvl.classList.remove("_void")
+        lvl.classList.remove("_up")
         if(++i === currentLvl) {
             lvl.classList.add("_active")
+
+            if (lvlStatus === true){
+                lvl.classList.add("_up")
+            }
+            if(currentLvl === 1 && betWinCounter <= 0 && lvlStatus === false){
+                lvl.classList.add("_void")
+            }
+            if(currentLvl === 1 && betWinCounter <= 0 && lvlStatus === true){
+                lvl.classList.remove("_void")
+            }
+
+            if(currentLvl === 2 && betWinCounter <= 2 && lvlStatus === false ){
+                lvl.classList.add("_void")
+            }
+            if(currentLvl === 2 && betWinCounter <= 2 && lvlStatus === true ){
+                lvl.classList.remove("_void")
+            }
+
+            if(currentLvl === 3 && betWinCounter <= 4 && lvlStatus === false){
+                lvl.classList.add("_void")
+            }
+            if(currentLvl === 3 && betWinCounter <= 4 && lvlStatus === true){
+                lvl.classList.remove("_void")
+            }
+
         }else{
             lvl.classList.remove("_active")
         }
-        console.log(i < currentLvl, i , currentLvl, lvl)
+        // console.log(i < currentLvl, i , currentLvl, lvl)
         i < currentLvl ? lvl.classList.add("_done") : null
     })
 
 }
-
-// function refreshCases(currentLvl) {
-//     cases.forEach((box, i) => {
-//         box.classList.remove("_active", "_left", "_right")
-//         if (++i === currentLvl) {
-//             box.classList.add("_active");
-//         } else {
-//             box.classList.remove("_active");
-//         }
-//
-//
-//         i !== currentLvl ? box.classList.add("_lock") : box.classList.remove("_lock");
-//
-//         currentLvl > cases.length ? cases[cases.length - 1].classList.remove("_lock") : null;
-//         currentLvl > cases.length ? cases[cases.length - 1].classList.add("_active") : null;
-//     });
-//
-// }
-
 
 function refreshCases(currentLvl) {
     cases.forEach((box, i) => {
         box.classList.remove("_active", "_left", "_right", "_lock");
     });
 
-    let activeIndex = currentLvl - 1; // Перетворюємо рівень у індекс масиву
+    let activeIndex = currentLvl - 1;
     if (activeIndex >= cases.length) {
         activeIndex = cases.length - 1;
     }
@@ -79,21 +134,35 @@ refreshLvl(currentLvl)
 function lvlUp(){
     currentLvl = currentLvl + 1
     sessionStorage.setItem("currentLvl", `${currentLvl}`)
-    refreshLvl(currentLvl)
+    // lvlStatus = false
+    checkStatus()
+    return lvlStatus
 }
 
-function checkStatus(){
-    if(lvlStatus){
-        getBtn.classList.remove("_lock")
-        document.querySelector(".bonus__progress-lvl._active").classList.add("_up")
-    }
-}
-checkStatus()
-// getBtn.addEventListener("click", () =>{
-//     if(lvlStatus){
-//         lvlUp()
+// function checkStatus(){
+//     if(currentLvl === 1 && betWinCounter > 1 ){
+//         lvlStatus = true
+//         refreshLvl(currentLvl)
+//         getBtn.classList.remove("_lock")
+//         document.querySelector(".bonus__progress-lvl._active").classList.add("_up")
+//         return lvlStatus
 //     }
-// })
+//     if(currentLvl === 2 && betWinCounter > 3){
+//         lvlStatus = true
+//         refreshLvl(currentLvl)
+//         getBtn.classList.remove("_lock")
+//         document.querySelector(".bonus__progress-lvl._active").classList.add("_up")
+//         return lvlStatus
+//     }
+//     if(currentLvl === 3 && betWinCounter > 5){
+//         lvlStatus = true
+//         refreshLvl(currentLvl)
+//         getBtn.classList.remove("_lock")
+//         document.querySelector(".bonus__progress-lvl._active").classList.add("_up")
+//         return lvlStatus
+//     }
+// }
+checkStatus()
 
 let idArr = userTablePlace.textContent.split("")
 
@@ -119,6 +188,7 @@ if(idArr.length === 5){
 function openCaseAnim(box){
     box.classList.add("shake")
     box.querySelector(".box__cap").classList.add("open")
+    getBtn.classList.add("_lock")
     setTimeout(() =>{
         box.querySelector(".box__cap-front").classList.add("hide")
     }, 300)
@@ -128,7 +198,8 @@ function openCaseAnim(box){
     setTimeout(() =>{
         lvlUp()
         refreshCases(currentLvl)
-    }, 2000)
+        checkStatus()
+    }, 4000)
 }
 
 
@@ -138,7 +209,8 @@ getBtn.addEventListener('click', () =>{
     cases.forEach((box, i) =>{
         if(box.classList.contains("_active")){
             openCaseAnim(box)
-            getBtn.classList.add("_lock")
+            // getBtn.classList.add("_lock")
+            // checkStatus()
         }
 
     })
@@ -150,18 +222,22 @@ function setPopup(btnOpen, btnClose, popup){
     btnOpen.addEventListener("click", () =>{
         popup.classList.remove("hide")
     })
-    btnClose.addEventListener("click", () =>{
-        popup.classList.add("hide")
-    })
-    document.addEventListener("click", (e) =>{
-        if(!popup.contains(e.target) && e.target !== btnOpen){
+    if(btnClose){
+        btnClose.addEventListener("click", () =>{
             popup.classList.add("hide")
-        }
-    })
+        })
+        document.addEventListener("click", (e) =>{
+            if(!popup.contains(e.target) && e.target !== btnOpen){
+                popup.classList.add("hide")
+            }
+        })
+    }
+
 }
 
 setPopup(progressPopupBtn, progressPopupClose, progressPopup)
-setPopup(updPopupBtn, updPopupClose, updPopup)
+setPopup(updPopupBtn, null, updPopup)
+setPopup(resultPopupBtn, resultPopupBtnClose, resultPopup)
 
 function startCountdown(endTime) {
     const hoursEls = document.querySelectorAll(".timer__hours-item");
@@ -215,6 +291,32 @@ const lvl1 = document.querySelector(".lvl-1")
 const lvl2 = document.querySelector(".lvl-2")
 const lvl3 = document.querySelector(".lvl-3")
 const lvlUpBtn = document.querySelector(".lvl-up")
+const betWin = document.querySelector(".bet-win")
+const betClear = document.querySelector(".bet-clear")
+
+betWin.textContent = `win bet: ${betWinCounter}`
+
+betWin.addEventListener("click", () =>{
+    betWinCounter = sessionStorage.getItem("betWinCounter") ? Number(sessionStorage.getItem("betWinCounter")) : 0
+    betWinCounter = betWinCounter + 1
+    sessionStorage.setItem("betWinCounter", betWinCounter)
+    betWin.textContent = `win bet: ${betWinCounter}`
+    // refreshLvl(currentLvl)
+    checkStatus()
+
+
+})
+
+betClear.addEventListener("click", () =>{
+    sessionStorage.removeItem("betWinCounter")
+    betWinCounter = 0
+    betWin.textContent = `win bet: 0`
+    checkStatus()
+    sessionStorage.setItem("currentLvl", "1")
+    window.location.reload()
+    // refreshLvl(currentLvl, lvlStatus)
+
+})
 
 lvl1.addEventListener("click", () =>{
     sessionStorage.setItem("currentLvl", "1")
@@ -235,4 +337,3 @@ lvlUpBtn.addEventListener("click", () =>{
     lvlStatus = !lvlStatus
 
 })
-

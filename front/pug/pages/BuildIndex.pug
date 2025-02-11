@@ -6,6 +6,8 @@ button.menu-btn menu
         button.lvl-2 lvl 2
         button.lvl-3 lvl 3
         button.lvl-up lvl up
+        button.bet-win
+        button.bet-clear clear bet
 .fav-page
     .welcome
         .fav-wrap
@@ -84,18 +86,18 @@ button.menu-btn menu
             .bonus__btn.btn.get-btn._lock(data-translate="getBtn") отримати приз
             .bonus__upd
 
-                .bonus__upd-popup.hide
-                    .bonus__upd-popup-close
-                    .bonus__upd-popup-content(data-translate="progressPopup").
-                            Коли всі рівні пройдені — змагайся з іншими учасниками за призові
-                            10 000 ₴* та статус Володара Гори. Приз отримає тільки 1 гравець
-                            (з найбільшою кількістю виграшних ставок протягом ігрового дня).
-                            Пам’ятай, прогрес обнуляється щоденно о 00:00 за київським часом.
+                //.bonus__upd-popup.hide
+                //    .bonus__upd-popup-close
+                //    .bonus__upd-popup-content(data-translate="progressPopup").
+                //            Коли всі рівні пройдені — змагайся з іншими учасниками за призові
+                //            10 000 ₴* та статус Володара Гори. Приз отримає тільки 1 гравець
+                //            (з найбільшою кількістю виграшних ставок протягом ігрового дня).
+                //            Пам’ятай, прогрес обнуляється щоденно о 00:00 за київським часом.
                 .bonus__upd-text
                     span.bonus__upd-text-item(data-translate="lastUpd") Останнє оновлення було о
-                    span.last-upd xx:xx
+                    span.last-upd 23.12.2024 22:15
                 .bonus__upd-btn
-            .bonus__warning(data-translate="bonusWarning").
+            .bonus__warning.hide(data-translate="bonusWarning").
                 Не панікуй якщо ставка вже розрахувалась, і
                  невідобразилась на цій сторінці. Пам’ятай,
                   що оновленнямапи прогресу може зайняти до 15 хв.
@@ -129,12 +131,32 @@ button.menu-btn menu
                     source(media="(min-width: 601px) and (max-width: 1050px) and (orientation: portrait)" srcset="./img/welcome/title-tab.png")
                     source(media="(min-width: 601px) and (orientation: landscape)" srcset="./img/welcome/title-desc.png")
                     img(src="./img/welcome/title-desc.png" alt="Favbet")
-            .result__subtitle.
-                Коли всі рівні пройдені — змагайся з іншими учасниками
-                 за призові #[span 10 000 ₴*] та статус Володара Гори. Приз
-                 отримає тільки 1 гравець (з найбільшою кількістю
-                 виграшних ставок протягом ігрового дня). Пам’ятай,
-                 прогрес обнуляється щоденно о 00:00 за київським часом.
+            .result__subtitle
+                span.result__subtitle-btn
+                span.result__subtitle-text.
+                    Коли всі рівні пройдені — змагайся з іншими учасниками
+                     за призові #[span 10 000 ₴*] та статус Володара Гори. Приз
+                     отримає тільки 1 гравець (з найбільшою кількістю
+                     виграшних ставок протягом ігрового дня). Пам’ятай,
+                     прогрес обнуляється щоденно о 00:00 за київським часом.
+            .result__subtitle-popup.hide
+                .result__subtitle-popup-close
+                .result__subtitle-popup-content.
+                    Коли всі рівні пройдені — змагайся з іншими учасниками
+                     за призові #[span 10 000 ₴*] та статус Володара Гори. Приз
+                     отримає тільки 1 гравець (з найбільшою кількістю
+                     виграшних ставок протягом ігрового дня). Пам’ятай,
+                     прогрес обнуляється щоденно о 00:00 за київським часом.
+                    Коли всі рівні пройдені — змагайся з іншими учасниками
+                     за призові #[span 10 000 ₴*] та статус Володара Гори. Приз
+                     отримає тільки 1 гравець (з найбільшою кількістю
+                     виграшних ставок протягом ігрового дня). Пам’ятай,
+                     прогрес обнуляється щоденно о 00:00 за київським часом.
+                    Коли всі рівні пройдені — змагайся з іншими учасниками
+                     за призові #[span 10 000 ₴*] та статус Володара Гори. Приз
+                     отримає тільки 1 гравець (з найбільшою кількістю
+                     виграшних ставок протягом ігрового дня). Пам’ятай,
+                     прогрес обнуляється щоденно о 00:00 за київським часом.
             .result__table
                 .table
                     .table__row(style="--columns: 1")
@@ -207,6 +229,8 @@ button.menu-btn menu
                         .result__table-nav-item 04.02
                         .result__table-nav-item 05.02
                         .result__table-nav-item 06.02
+                .result__table-lock
+                    .result__table-lock-item
             .drop
                 details.dropdown
                     summary(data-translate="detailsBtn") Деталі
