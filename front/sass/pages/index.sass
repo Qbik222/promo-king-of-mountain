@@ -327,7 +327,7 @@ body
       top: 0
 
     &-lvl
-      color: $white
+      color: rgba($white, .4)
       font-family: $font-roboto-cond-black-it
       text-shadow: 0px 2.871px 2.871px rgba(0, 0, 0, 0.25)
       text-transform: uppercase
@@ -338,6 +338,7 @@ body
       span:nth-child(1)
         z-index: 3
       &._done, &._active
+        color: $white
         filter: drop-shadow(0px 0px 8.059px rgba(255, 106, 169, 0.3)) drop-shadow(0px 0px 7.059px rgba(255, 106, 169, 0.2)) drop-shadow(0px 0px 2.059px rgba(255, 106, 169, 0.8))
         &::before
           background: $magenta
@@ -597,7 +598,7 @@ body
         filter: grayscale(100%)
       &._left
         position: absolute
-        left: 1%
+        left: 0%
       &._right
         position: absolute
         left: 99%
@@ -606,7 +607,7 @@ body
         scale: 1.1
         transform-origin: top center
         position: absolute
-        left: 51%
+        left: 52%
         transform: translate(-50%, 0)
         .box
           &__body
