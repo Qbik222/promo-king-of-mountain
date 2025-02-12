@@ -642,10 +642,10 @@ body
             z-index: 4
           &__prize
             z-index: 3
-            transform: translateZ(100px)
+            transform: translateZ(30px)
             opacity: 1
           &__inside
-            transform: translateZ(80px)
+            //transform: translateZ(80px)
       &._lock
         filter: grayscale(100%)
       &._left
@@ -752,7 +752,7 @@ body
     position: relative
     width: 100%
     height: 100%
-    perspective: 1000px
+    perspective: 200px
     &::before
       content: ""
       display: block
@@ -806,19 +806,20 @@ body
         bottom: -16px
 
       &-back
-        width: 112%
-        height: 95px
+        width: 65%
+        height: 75px
         background: url("../img/bonus/box-cap-front.png") no-repeat center / contain
         transform-origin: center bottom
         //transform: rotateY(180deg) rotateX(-30deg) scale(-1, -1) translate(7px, 61px)
-        transform: rotateY(177deg) rotateX(-72deg) scale(-1, -1) translate(7px, 46px)
+        //transform: rotateY(177deg) rotateX(-72deg) scale(-1, -1) translate(7px, 46px)
+        transform: rotateY(177deg) rotateX(-72deg) scale(-1, -1) translate(42px, 51px)
     &__inside
       width: 165px
       height: 40px
       position: absolute
       left: 23px
       top: 109px
-      transform: translateZ(80px)
+      transform: translateZ(20px)
       opacity: 0
 
       background: url("../img/bonus/box-inside.png") no-repeat 0 0/contain
@@ -831,7 +832,7 @@ body
       left: 15px
       top: 114px
       z-index: 2
-      transform: translateZ(90px)
+      transform: translateZ(20px)
 
     &__prize
       position: absolute
@@ -840,7 +841,7 @@ body
       width: fit-content
       max-width: 145px
       //max-height: 80px
-      transform: translate(0, 100%) scale(.2) translateZ(100px)
+      transform: translate(0, 100%) scale(.2) translateZ(30px)
       opacity: 0
       transition: all .7s ease-in-out
       left: 40px
