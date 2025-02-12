@@ -246,6 +246,15 @@ body
   width: 100%
   background: url("../img/bonus/bg-desc.png") no-repeat 50% 0/cover
   background-size: 1730px 890px
+  @media screen and (max-width: 950px)
+    background: url("../img/bonus/bg-tab.png") no-repeat 50% 31%/cover
+    background-size: 1490px 740px
+  @media screen and (max-width: 600px)
+    background: url("../img/bonus/bg-mob.png") no-repeat 50% 30%/cover
+    background-size: 600px 620px
+  @media screen and (max-width: 450px)
+    //background-position: 50% 50%
+    background-size: 470px 770px
   &__btn
     z-index: 2
     margin-top: 25px
@@ -740,7 +749,6 @@ body
     width: 100%
     height: 100%
     perspective: 1000px
-
     &::before
       content: ""
       display: block
@@ -1092,6 +1100,17 @@ details summary::-webkit-details-marker
     left: 50%
     transform: translate(-50%, 0)
     position: absolute
+    @media screen and (max-width: 950px)
+      background: url("../img/result/result-bg-tab.png") no-repeat 0 0/contain
+      height: 1200px
+      min-width: 850px
+      max-width: 850px
+    @media screen and (max-width: 600px)
+      background: url("../img/result/result-bg-mob.png") no-repeat 0 0/contain
+      height: 1040px
+      min-width: 470px
+      max-width: 470px
+      left: 52%
   &::after
     content: ""
     display: block
