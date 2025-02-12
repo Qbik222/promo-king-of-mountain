@@ -753,6 +753,7 @@ body
     width: 100%
     height: 100%
     perspective: 200px
+    transform-style: preserve-3d !important
     &::before
       content: ""
       display: block
@@ -783,6 +784,7 @@ body
       &.open
         transform: rotateX(100deg) rotateY(4deg) rotateZ(0) translate(0px, 0px) translateZ(0px)
         z-index: 1
+        will-change: transform !important
         //.box__cap-front
         //  transition: all .4s ease-in-out
         //  bottom: 20px
@@ -797,6 +799,7 @@ body
         top: 0
         left: 0
         backface-visibility: hidden
+        -webkit-backface-visibility: hidden
 
       &-front
         background: url("../img/bonus/box-cap-back.png") no-repeat center / contain
