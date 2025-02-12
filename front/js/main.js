@@ -14,24 +14,12 @@ const userPlace = document.querySelector(".you"),
 
 let currentLvl = sessionStorage.getItem("currentLvl") ? Number(sessionStorage.getItem("currentLvl")) : 1
 
-let lvlStatus = false
+let lvlStatus = checkStatus();
 let betWinCounter = sessionStorage.getItem("betWinCounter") ? Number(sessionStorage.getItem("betWinCounter")) : 0
-let openCaseCounter = sessionStorage.getItem("openCaseCounter") ? Number(sessionStorage.getItem("openCaseCounter")) : 0
 
-// if(currentLvl === 1 && betWinCounter > 1 ){
-//     lvlStatus = true
-// }
-// if(currentLvl === 2 && betWinCounter > 3){
-//     lvlStatus = true
-// }
-// if(currentLvl === 3 && betWinCounter > 5){
-//     lvlStatus = true
-// }
-
-
-lvlStatus = checkStatus();
 
 function checkStatus() {
+    betWinCounter < 6 ? document.querySelector(".result__table").classList.add("_lock") : null
     const activeLvl = document.querySelector(".bonus__progress-lvl._active");
     const conditions = {
         bet: {
@@ -129,39 +117,14 @@ function refreshCases(currentLvl) {
 
 
 refreshCases(currentLvl)
-refreshLvl(currentLvl)
 
 function lvlUp(){
     currentLvl = currentLvl + 1
     sessionStorage.setItem("currentLvl", `${currentLvl}`)
-    // lvlStatus = false
     checkStatus()
     return lvlStatus
 }
 
-// function checkStatus(){
-//     if(currentLvl === 1 && betWinCounter > 1 ){
-//         lvlStatus = true
-//         refreshLvl(currentLvl)
-//         getBtn.classList.remove("_lock")
-//         document.querySelector(".bonus__progress-lvl._active").classList.add("_up")
-//         return lvlStatus
-//     }
-//     if(currentLvl === 2 && betWinCounter > 3){
-//         lvlStatus = true
-//         refreshLvl(currentLvl)
-//         getBtn.classList.remove("_lock")
-//         document.querySelector(".bonus__progress-lvl._active").classList.add("_up")
-//         return lvlStatus
-//     }
-//     if(currentLvl === 3 && betWinCounter > 5){
-//         lvlStatus = true
-//         refreshLvl(currentLvl)
-//         getBtn.classList.remove("_lock")
-//         document.querySelector(".bonus__progress-lvl._active").classList.add("_up")
-//         return lvlStatus
-//     }
-// }
 checkStatus()
 
 let idArr = userTablePlace.textContent.split("")
@@ -293,6 +256,7 @@ const lvl3 = document.querySelector(".lvl-3")
 const lvlUpBtn = document.querySelector(".lvl-up")
 const betWin = document.querySelector(".bet-win")
 const betClear = document.querySelector(".bet-clear")
+const btnLock = document.querySelector(".btn-lock")
 
 betWin.textContent = `win bet: ${betWinCounter}`
 
@@ -336,4 +300,8 @@ lvlUpBtn.addEventListener("click", () =>{
     checkStatus()
     lvlStatus = !lvlStatus
 
+})
+
+btnLock.addEventListener("click", () =>{
+    document.querySelector(".result__table").classList.toggle("_lock")
 })
