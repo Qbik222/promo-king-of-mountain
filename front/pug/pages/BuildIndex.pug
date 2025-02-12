@@ -86,22 +86,17 @@ button.menu-btn menu
                             .box__prize-bottom(data-translate="boxesPrize3") 500 ₴ #[span на рахунок]
             .bonus__btn.btn.get-btn._lock(data-translate="getBtn") отримати приз
             .bonus__upd
-
-                //.bonus__upd-popup.hide
-                //    .bonus__upd-popup-close
-                //    .bonus__upd-popup-content(data-translate="progressPopup").
-                //            Коли всі рівні пройдені — змагайся з іншими учасниками за призові
-                //            10 000 ₴* та статус Володара Гори. Приз отримає тільки 1 гравець
-                //            (з найбільшою кількістю виграшних ставок протягом ігрового дня).
-                //            Пам’ятай, прогрес обнуляється щоденно о 00:00 за київським часом.
                 .bonus__upd-text
                     span.bonus__upd-text-item(data-translate="lastUpd") Останнє оновлення було о
                     span.last-upd 23.12.2024 22:15
                 .bonus__upd-btn
-            .bonus__warning.hide(data-translate="bonusWarning").
-                Не панікуй якщо ставка вже розрахувалась, і
-                 невідобразилась на цій сторінці. Пам’ятай,
-                  що оновленнямапи прогресу може зайняти до 15 хв.
+            .bonus__warning.hide
+                .bonus__warning-text(data-translate="bonusWarning").
+                    Не панікуй якщо ставка вже розрахувалась, і
+                     невідобразилась на цій сторінці. Пам’ятай,
+                      що оновленнямапи прогресу може зайняти до 15 хв.
+                .bonus__warning-close
+            .bonus__decor
             .drop
                 details.dropdown
                     summary(data-translate="detailsBtn") Деталі

@@ -885,6 +885,7 @@ body
         cursor: pointer
   &__warning
     max-width: 705px
+    width: 1000px
     padding: 24px
     color: $white
     font-size: 16px
@@ -893,11 +894,29 @@ body
     border-radius: 8px
     background: rgba(255, 255, 255, 0.10)
     margin: 0 0 25px
+    position: absolute
+    left: 50%
+    bottom: 300px
+    z-index: 6
+    transform: translate(-50%, 0)
     transition: all .7s ease-in-out
+    &-text
+      font-family: inherit
+      font-size: inherit
+      color: inherit
+    &-close
+      width: 20px
+      height: 20px
+      z-index: 4
+      position: absolute
+      top: 4px
+      right: 6px
+      background: url("../img/close-icon.png") no-repeat 0 0/contain
+      &:hover
+        cursor: pointer
     &.hide
-      margin: 0
-      padding: 0
-      height: 0
+      transition: none
+  &__decor
     &::before, &::after
       content: ""
       display: block
@@ -908,6 +927,7 @@ body
       background: url("../img/pink-decor.png") no-repeat 0 0/contain
       z-index: 0
       bottom: -690px
+      pointer-events: none
     &::before
       left: calc(50% - 870px)
       transform: translate(-50%, 0) rotate(-190deg)
@@ -1174,7 +1194,8 @@ details summary::-webkit-details-marker
       z-index: 4
       max-width: 730px
       max-height: 300px
-      position: relative
+      position: absolute
+      top: 250px
       &.hide
         display: none
 

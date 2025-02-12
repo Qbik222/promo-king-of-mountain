@@ -8,6 +8,7 @@ const userPlace = document.querySelector(".you"),
     progressPopupClose = document.querySelector(".bonus__progress-popup-close"),
     updPopup = document.querySelector(".bonus__warning"),
     updPopupBtn = document.querySelector(".bonus__upd-btn"),
+    updPopupClose = document.querySelector(".bonus__warning-close"),
     resultPopup = document.querySelector(".result__subtitle-popup"),
     resultPopupBtn = document.querySelector(".result__subtitle-btn"),
     resultPopupBtnClose = document.querySelector(".result__subtitle-popup-close");
@@ -181,13 +182,19 @@ getBtn.addEventListener('click', () =>{
 })
 
 
-function setPopup(btnOpen, btnClose, popup){
+function setPopup(btnOpen, btnClose, popup, hide){
     btnOpen.addEventListener("click", () =>{
         popup.classList.remove("hide")
+        if(hide){
+            btnOpen.parentNode.style.opacity = "0"
+        }
     })
     if(btnClose){
         btnClose.addEventListener("click", () =>{
             popup.classList.add("hide")
+            if(hide){
+                btnOpen.parentNode.style.opacity = "1"
+            }
         })
         document.addEventListener("click", (e) =>{
             if(!popup.contains(e.target) && e.target !== btnOpen){
@@ -199,8 +206,8 @@ function setPopup(btnOpen, btnClose, popup){
 }
 
 setPopup(progressPopupBtn, progressPopupClose, progressPopup)
-setPopup(updPopupBtn, null, updPopup)
-setPopup(resultPopupBtn, resultPopupBtnClose, resultPopup)
+setPopup(updPopupBtn, updPopupClose, updPopup, true)
+setPopup(resultPopupBtn, resultPopupBtnClose, resultPopup, true)
 
 function startCountdown(endTime) {
     const hoursEls = document.querySelectorAll(".timer__hours-item");
