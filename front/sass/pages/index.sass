@@ -282,7 +282,7 @@ body
     font-size: 36px
     text-transform: uppercase
     &::before, &::after
-      content: ""
+      //content: "" blue decor
       display: block
       position: absolute
       min-width: 780px
@@ -638,9 +638,10 @@ body
             transform: none
           &__body
             z-index: 4
+            transform: translateZ(9px)
           &__prize
             z-index: 3
-            transform: none
+            transform: translateZ(10px)
             opacity: 1
       &._lock
         filter: grayscale(100%)
@@ -777,7 +778,7 @@ body
       transition: transform 1s ease-in-out
       transform-style: preserve-3d
       &.open
-        transform: rotateX(100deg) rotateY(4deg) rotateZ(0) translate(0px, 0px)
+        transform: rotateX(100deg) rotateY(4deg) rotateZ(0) translate(0px, 0px) translateZ(0px)
         z-index: 1
         //.box__cap-front
         //  transition: all .4s ease-in-out
@@ -918,7 +919,7 @@ body
       transition: none
   &__decor
     &::before, &::after
-      content: ""
+      //content: "" magenta decor
       display: block
       position: absolute
       min-width: 980px
