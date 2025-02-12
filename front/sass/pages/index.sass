@@ -636,6 +636,8 @@ body
           &::before
             opacity: 1
             transform: none
+          &__inside
+            opacity: 1
           &__body
             z-index: 4
           &__prize
@@ -809,7 +811,7 @@ body
         background: url("../img/bonus/box-cap-front.png") no-repeat center / contain
         transform-origin: center bottom
         //transform: rotateY(180deg) rotateX(-30deg) scale(-1, -1) translate(7px, 61px)
-        transform: rotateY(177deg) rotateX(-70deg) scale(-1, -1) translate(7px, 46px)
+        transform: rotateY(177deg) rotateX(-72deg) scale(-1, -1) translate(7px, 46px)
     &__inside
       width: 165px
       height: 40px
@@ -817,6 +819,7 @@ body
       left: 23px
       top: 109px
       transform: translateZ(80px)
+      opacity: 0
 
       background: url("../img/bonus/box-inside.png") no-repeat 0 0/contain
       filter: drop-shadow(0px 0px 19.715px rgba(255, 106, 169, 0.30)) drop-shadow(0px 0px 19.715px rgba(255, 106, 169, 0.20)) drop-shadow(0px 0px 19.715px rgba(255, 106, 169, 0.80))
