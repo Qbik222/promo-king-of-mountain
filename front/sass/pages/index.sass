@@ -641,7 +641,7 @@ body
             transform: none
           &__inside
             display: block
-            //opacity: 1
+            opacity: 1
             //transition: opacity .2s ease-in-out
           &__body
             z-index: 4
@@ -660,15 +660,15 @@ body
       &._right
         position: absolute
         //left: 99%
-        left: 72%
-        //transform: translate(-100%, 0)
+        left: 0
+        transform: translate(230%, 0)
       &._active
         scale: 1.1
         transform-origin: top center
         position: absolute
         //left: 52%
-        left: 35%
-        //transform: translate(-50%, 0)
+        left: 0
+        transform: translate(100%, 0)
         .box
           &__body
             top: 112px
@@ -763,7 +763,7 @@ body
     //perspective: 200px
     //transform-style: preserve-3d !important
     &::before
-      //content: ""
+      content: ""
       display: block
       position: absolute
       //filter: blur(2px)
@@ -799,7 +799,7 @@ body
           transform: none
           opacity: 1
         .box__cap-front
-          //transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg) translate(0px, 0px)
+          transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg) translate(0px, 0px)
           opacity: 0
         //  transition: all .4s ease-in-out
         //  bottom: 20px
@@ -831,7 +831,7 @@ body
         height: 90px
         background: url("../img/bonus/box-cap-front.png") no-repeat center / contain
         transform-origin: center bottom
-        //transform: rotateX(100deg) rotateY(4deg) rotateZ(0) translate(0px, 0px) translateZ(0px)
+        transform: rotateX(100deg) rotateY(4deg) rotateZ(0) translate(0px, 0px) translateZ(0px)
         left: 18px
         top: -57px
         transition: all 1s ease-in-out
@@ -955,7 +955,7 @@ body
       transition: none
   &__decor
     &::before, &::after
-      //content: "" magenta decor
+      content: ""
       display: block
       position: absolute
       min-width: 980px
@@ -1570,22 +1570,22 @@ details summary::-webkit-details-marker
 
 
 
-//@keyframes shake
-//  0%
-//    transform: translateX(-50%)
-//  10%, 30%, 50%, 70%, 90%
-//    transform: translateX(-51%) rotate(-2deg)
-//  20%, 40%, 60%, 80%, 100%
-//    transform: translateX(-49%) rotate(2deg)
-
-
 @keyframes shake
   0%
-    transform: translateX(4px)
+    transform: translateX(101%)
   10%, 30%, 50%, 70%, 90%
-    transform: translateX(-4px) rotate(-2deg)
+    transform: translateX(99%) rotate(-2deg)
   20%, 40%, 60%, 80%, 100%
-    transform: translateX(4px) rotate(2deg)
+    transform: translateX(101%) rotate(2deg)
+
+
+//@keyframes shake
+//  0%
+//    transform: translateX(4px)
+//  10%, 30%, 50%, 70%, 90%
+//    transform: translateX(-4px) rotate(-2deg)
+//  20%, 40%, 60%, 80%, 100%
+//    transform: translateX(4px) rotate(2deg)
 
 .shake
   animation: shake 1s ease-in-out
