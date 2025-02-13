@@ -649,8 +649,8 @@ body
             z-index: 3
             transform: translateZ(80px) scale(.7)
             opacity: 1
-          &__inside
-            transform: translateZ(80px)
+          //&__inside
+            //transform: translateZ(80px)
       &._lock
         filter: grayscale(100%)
       &._left
@@ -674,9 +674,9 @@ body
         .box
           &__body
             background: url("../img/bonus/box1-body-lock.png") no-repeat 0 0/contain
-        order: 1
+        //order: 1
         &._active
-          order: 3
+          //order: 3
           .box
             &__body
               background: url("../img/bonus/box-body1.png") no-repeat 0 0/contain
@@ -686,15 +686,15 @@ body
           &__body
             background: url("../img/bonus/box2-body-lock.png") no-repeat 0 0/contain
           //&__prize
-        order: 3
+        //order: 3
         &._active
-          order: 2
+          //order: 2
           .box
             &__body
               background: url("../img/bonus/box-body2.png") no-repeat 0 0/contain
       &:nth-child(3)
         .box
-          order: 4
+          //order: 4
           &__body
             background: url("../img/bonus/box3-body-lock.png") no-repeat 0 0/contain
           &__prize
@@ -703,7 +703,7 @@ body
                 font-size: 14px
 
         &._active
-          order: 2
+          //order: 2
           .box
             &__body
               background: url("../img/bonus/box-body3.png") no-repeat 0 0/contain
@@ -839,7 +839,7 @@ body
       height: 40px
       position: absolute
       left: 23px
-      top: 109px
+      top: 110px
       display: none
       //transform: translateZ(60px) scale(.78)
       transform: translateZ(60px) scale(1)
