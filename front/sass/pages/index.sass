@@ -285,7 +285,7 @@ body
     font-size: 36px
     text-transform: uppercase
     &::before, &::after
-      //content: "" blue decor
+      content: ""
       display: block
       position: absolute
       min-width: 780px
@@ -634,6 +634,7 @@ body
       order: 2
       scale: .95
       transition: all 1s ease-in-out
+      will-change: transform !important
       &._show
         .box
           &::before
@@ -676,6 +677,9 @@ body
       &:nth-child(1)
         .box
           &__body
+            background: url("../img/bonus/box-body1.png") no-repeat 0 0/contain
+        .box
+          &__body
             background: url("../img/bonus/box1-body-lock.png") no-repeat 0 0/contain
         //order: 1
         &._active
@@ -687,6 +691,9 @@ body
       &:nth-child(2)
         .box
           &__body
+            background: url("../img/bonus/box-body2.png") no-repeat 0 0/contain
+        .box
+          &__body
             background: url("../img/bonus/box2-body-lock.png") no-repeat 0 0/contain
           //&__prize
         //order: 3
@@ -696,6 +703,9 @@ body
             &__body
               background: url("../img/bonus/box-body2.png") no-repeat 0 0/contain
       &:nth-child(3)
+        .box
+          &__body
+            background: url("../img/bonus/box-body3.png") no-repeat 0 0/contain
         .box
           //order: 4
           &__body
@@ -794,7 +804,7 @@ body
       &.open
         transform: none
         z-index: 1
-        //will-change: transform !important
+        will-change: transform !important
         .box__cap-back
           transform: none
           opacity: 1

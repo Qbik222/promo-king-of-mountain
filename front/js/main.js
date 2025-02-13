@@ -1,9 +1,7 @@
 (function() {
     // const apiURL = 'https://fav-prom.com/api_mountain_king'
-    const apiURL = 'https://fav-prom.com/api_vip';
-
-    const userPlace = document.querySelector(".you"),
-        userTablePlace = userPlace.querySelector(".table__block-place"),
+    // const apiURL = 'https://fav-prom.com/api_vip',
+    const apiURL = 'https://fav-prom.com/api_champ_ro',
         cases = document.querySelectorAll(".bonus__boxes-item"),
         getBtn = document.querySelector(".get-btn"),
         levels = document.querySelectorAll(".bonus__progress-lvl"),
@@ -26,7 +24,7 @@
 
     let lvlStatus = checkStatus();
     let betWinCounter = sessionStorage.getItem("betWinCounter") ? Number(sessionStorage.getItem("betWinCounter")) : 0
-    let locale = sessionStorage.getItem("locale") ? sessionStorage.getItem("locale") : "uk"
+    let locale = sessionStorage.getItem("locale") ? sessionStorage.getItem("locale") : "ro"
 
 
     // if (ukLeng) locale = 'uk';
@@ -36,7 +34,8 @@
     let i18nData = {};
     const translateState = false;
     let userId;
-    userId = 100300268;
+    // userId = 100300268;
+    userId = 100856888;
 
     function getData() {
         return Promise.all([
@@ -74,7 +73,7 @@
             refreshCases(currentLvl)
             getData().then(res =>{
                 let users = res[0].sort((a, b) => b.points - a.points);
-                // renderUsers(users);
+                renderUsers(users);
             })
         }
     }
@@ -188,10 +187,8 @@
             return request(`/favuser/${userId}?nocache=1`)
                 .then(res => {
                     if (res.userid) {
-
                         participateBtns.forEach(item => item.classList.remove('hide'));
                         redirectBtns.forEach(item => item.classList.add('hide'));
-                        // displayUserInfo(res);
                     } else {
                         participateBtns.forEach(item => item.classList.add('hide'));
                         redirectBtns.forEach(item => item.classList.remove('hide'));
@@ -209,56 +206,100 @@
     }
 
     const renderUsers = (users) => {
-        // resultsTableWrapper.classList.remove('hide');
-        // resultsTableOther.classList.remove('hide');
+        const currentUser = userId && users.find(user => user.userid === userId);
         if (users && users.length) {
-            let topUsers = users.slice(0, 2);
+            let topUsers = users.slice(0, 4);
+            if(currentUser){
+                const currentUserIndex = currentUser && users.indexOf(currentUser);
+                topUsers = [...topUsers, currentUser]
+                populateUsersTable(topUsers, userId, resultsTable, users, currentUserIndex);
+            }else{
+                populateUsersTable(topUsers, userId, resultsTable, users, 4);
+            }
 
-
-            const currentUser = userId && users.find(user => user.userid === userId);
-            const currentUserIndex = currentUser && users.indexOf(currentUser);
-            populateUsersTable(topUsers, userId, resultsTable, users, currentUser);
-            // let otherUsers;
-
-            // if (!currentUserIndex || currentUserIndex < 10) {
-            //     otherUsers = users.slice(10, 13);
-            // }  else {
-            //     otherUsers = users.slice(Math.max(currentUserIndex - 1, 10), currentUserIndex + 2);
-            // }
-            //
-            // if (otherUsers && otherUsers.length) {
-            //     populateUsersTable(otherUsers, userId, resultsTableOther, users);
-            // }
         }
 
     }
 
 
-    function populateUsersTable(users, currentUserId, table, allUsers, currentUser) {
+    function populateUsersTable(users, currentUserId, table, allUsers, userIndex) {
         table.innerHTML = '';
+        let currentUser = users[users.length - 1]
+        // console.log(users)
+
+        const createRow = (columns) => {
+            const row = document.createElement("div");
+            row.classList.add("table__row");
+            row.style.setProperty("--columns", columns);
+            return row;
+            };
+        const createUserBlock = (user, extraClass = "", place) => {
+            const block = document.createElement("div");
+            if(extraClass){
+                block.classList.add("table__block", extraClass);
+            }else{
+                block.classList.add("table__block");
+            }
+
+            const icon = document.createElement("div");
+            icon.classList.add("table__block-icon");
+
+            const img = document.createElement("img");
+            img.src = "./img/table/icon.png";
+            img.alt = "Favbet";
+            icon.appendChild(img);
+            block.appendChild(icon);
+
+            if (user) {
+                const info = document.createElement("div");
+                info.classList.add("table__block-info");
+                info.innerHTML = `
+                <div class="table__block-place">${place}</div>
+                <div class="table__block-id">id ${user.userid}</div>
+            `;
+                block.appendChild(info);
+
+                const bets = document.createElement("div");
+                bets.classList.add("table__info-bets");
+                bets.innerHTML = `
+                <div class="table__info-bets-counter">${user.bets}</div>
+                <div class="table__info-bets-text" data-translate="bonusBets">виграшні ставки</div>
+            `;
+                block.appendChild(bets);
+            }
+
+            return block;
+        };
         if (users && users.length) {
-            users.forEach((user) => {
-                console.log(user)
-                const checkCurrentUser = currentUserId && currentUserId === user.userid;
-                const additionalUserRow = document.createElement('div');
-                additionalUserRow.classList.add('table__row');
-                if (checkCurrentUser) {
-                    additionalUserRow.classList.add('_you');
-                }
-                // const place = allUsers.indexOf(user) + 1;
-                // const prizePlaceCss = PRIZES_CSS[place - 1];
-                // if (prizePlaceCss) {
-                //     additionalUserRow.classList.add(prizePlaceCss);
-                // }
-                // const prizeKey = getPrizeTranslationKey(place)
-                // additionalUserRow.innerHTML = `
-                //         <div class="tableResults__body-col" ${checkCurrentUser}>${place}</div>
-                //         <div class="tableResults__body-col">${user.userid}</div>
-                //         <div class="tableResults__body-col">${user.points}</div>
-                //         <div class="tableResults__body-col">${prizeKey ? translateKey(prizeKey) : ' - '}</div>
-                //     `;
-                // table.append(additionalUserRow);
-            });
+            const row1 = createRow(1);
+            row1.appendChild(createUserBlock(users[0], "_first", 1));
+            table.appendChild(row1);
+
+            const row2 = createRow(2);
+            row2.appendChild(createUserBlock(users[1], "_second", 2));
+            row2.appendChild(createUserBlock(users[2], "_second", 3));
+            table.appendChild(row2);
+
+            const row3 = createRow(3);
+            if(userId){
+                row3.appendChild(createUserBlock(null));
+                row3.appendChild(createUserBlock(currentUser, "you", userIndex));
+                row3.appendChild(createUserBlock(null));
+                table.appendChild(row3);
+            }else{
+                row3.appendChild(createUserBlock(null));
+                row3.appendChild(createUserBlock(users[3], "you", userIndex));
+                row3.appendChild(createUserBlock(null));
+                table.appendChild(row3);
+            }
+
+
+            const row4 = createRow(4);
+            for (let i = 0; i < 4; i++) {
+                row4.appendChild(createUserBlock(null));
+            }
+            table.appendChild(row4);
+            checkPlaceLength()
         }
     }
 
@@ -371,26 +412,35 @@
 
     // checkStatus()
 
-    let idArr = userTablePlace.textContent.split("")
+
 
 // console.log(idArr)
 
-    if(idArr.length === 1){
-        userTablePlace.classList.add('_one')
-    }
-    if(idArr.length === 2){
-        userTablePlace.classList.add('_two')
-    }
-    if(idArr.length === 3){
-        userTablePlace.classList.add('_three')
-    }
-    if(idArr.length === 4){
-        userTablePlace.classList.add('_four')
+    function checkPlaceLength(){
+        const userPlace = document.querySelector(".you"),
+            userTablePlace = userPlace.querySelector(".table__block-place");
+
+        let idArr = userTablePlace.textContent.split("")
+        console.log(idArr)
+        if(idArr.length === 1){
+            userTablePlace.classList.add('_one')
+        }
+        if(idArr.length === 2){
+            userTablePlace.classList.add('_two')
+        }
+        if(idArr.length === 3){
+            userTablePlace.classList.add('_three')
+        }
+        if(idArr.length === 4){
+            userTablePlace.classList.add('_four')
+        }
+
+        if(idArr.length === 5){
+            userTablePlace.classList.add('_five')
+        }
     }
 
-    if(idArr.length === 5){
-        userTablePlace.classList.add('_five')
-    }
+
 
     function openCaseAnim(box){
         box.classList.add("shake")
