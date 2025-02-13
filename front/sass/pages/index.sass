@@ -647,7 +647,8 @@ body
             z-index: 4
           &__prize
             z-index: 3
-            transform: translateZ(80px) scale(.7)
+              //translateZ(80px)
+            transform:  scale(.7)
             opacity: 1
           //&__inside
             //transform: translateZ(80px)
@@ -777,6 +778,7 @@ body
       transform: translate(0, 50%)
       transition: all 1s ease-in-out
     &__cap
+      //display: none
       position: absolute
       width: 180px
       height: 30px
@@ -795,7 +797,7 @@ body
           transform: none
           opacity: 1
         .box__cap-front
-          transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg) translate(0px, 0px) translateZ(0px)
+          transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg) translate(0px, 0px)
           opacity: 0
         //  transition: all .4s ease-in-out
         //  bottom: 20px
@@ -842,7 +844,7 @@ body
       top: 110px
       display: none
       //transform: translateZ(60px) scale(.78)
-      transform: translateZ(60px) scale(1)
+      //transform: translateZ(60px) scale(1)
       //opacity: 0
       background: url("../img/bonus/box-inside.png") no-repeat 0 0/contain
 
@@ -853,7 +855,7 @@ body
       left: 15px
       top: 114px
       z-index: 2
-      transform: translateZ(70px) scale(1)
+      //transform: translateZ(70px) scale(1)
 
     &__prize
       position: absolute
@@ -863,7 +865,8 @@ body
       width: fit-content
       max-width: 145px
       //max-height: 80px
-      transform: translate(0, 100%) scale(.2) translateZ(30px)
+      // translateZ(30px)
+      transform: translate(0, 100%) scale(.2)
       opacity: 0
       transition: all .7s ease-in-out
       left: 40px
