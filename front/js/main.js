@@ -189,11 +189,11 @@
                 .then(res => {
                     if (res.userid) {
 
-                        participateBtns.forEach(item => item.classList.add('hide'));
-                        redirectBtns.forEach(item => item.classList.remove('hide'));
+                        participateBtns.forEach(item => item.classList.remove('hide'));
+                        redirectBtns.forEach(item => item.classList.add('hide'));
                         // displayUserInfo(res);
                     } else {
-                        participateBtns.forEach(item => item.classList.remove('hide'));
+                        participateBtns.forEach(item => item.classList.add('hide'));
                         redirectBtns.forEach(item => item.classList.remove('hide'));
                     }
                 })
@@ -401,7 +401,7 @@
         }, 300)
         setTimeout(() =>{
             box.classList.add("_show")
-        }, 450)
+        }, 150)
         setTimeout(() =>{
             lvlUp()
             refreshCases(currentLvl)
