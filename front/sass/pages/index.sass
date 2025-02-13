@@ -912,7 +912,7 @@ body
     //margin: 0 0 25px
     position: absolute
     left: 50%
-    bottom: 314px
+    bottom: 334px
     z-index: 6
     transform: translate(-50%, 0)
     transition: all .7s ease-in-out
@@ -1600,6 +1600,14 @@ body.dark
   .bonus
     background: url("../img/bonus/bg-desc-dark.png") no-repeat 50% 0/cover
     background-size: 1730px 890px
+    @media screen and (max-width: 950px)
+      background: url("../img/bonus/bg-tab-dark.png") no-repeat 50% 31%/cover
+      background-size: 1490px 740px
+    @media screen and (max-width: 600px)
+      background: url("../img/bonus/bg-mob-dark.png") no-repeat 50% 30%/cover
+      background-size: 600px 620px
+    @media screen and (max-width: 450px)
+      background-size: 470px 770px
     .fav-wrap
       &::before
         background: url("../img/bonus/timer-bg-desc-dark.png") no-repeat 0 0/contain

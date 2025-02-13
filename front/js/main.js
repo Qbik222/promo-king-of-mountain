@@ -442,6 +442,9 @@
             document.addEventListener("click", (e) =>{
                 if(!popup.contains(e.target) && e.target !== btnOpen){
                     popup.classList.add("hide")
+                    if(hide){
+                        btnOpen.parentNode.style.opacity = "1"
+                    }
                 }
             })
         }
