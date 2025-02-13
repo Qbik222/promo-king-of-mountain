@@ -9,6 +9,7 @@ button.menu-btn menu
         button.bet-win
         button.bet-clear clear bet
         button.btn-lock lock
+        button.dark-btn dark
 .fav-page#mountain-king
     .welcome
         .fav-wrap
@@ -25,7 +26,9 @@ button.menu-btn menu
             .welcome__bonus
                 .welcome__bonus-prize #[span.welcome__bonus-prize-item(data-translate="welcomePrize") 10 000 ]
                 .welcome__bonus-text(data-translate="welcomeText") #[span.welcome__bonus-text-item(data-translate="welcomeText") щоденно ]
-            .welcome__btn.btn.part-btn(data-translate="partBtn") взяти участь
+            .welcome__btn.btn.part-btn.hide(data-translate="partBtn") взяти участь
+            .welcome__btn.btn.unauth-msg.hide(data-translate="signBtn") авторизуйся
+            .welcome__btn.btn.btn-join.hide(data-translate="playBtn") грати
     .bonus
         .fav-wrap
             .bonus__title(data-translate="bonusTitle") Щоденні бонуси
@@ -53,38 +56,40 @@ button.menu-btn menu
                 .bonus__bets
                     .bonus__bets-title(data-translate="bonusBets") виграшні <br> ставки
                     .bonus__bets-info #[span.bonus__bets-info-item 0] #[span.bonus__bets-info-item 4]
-            .bonus__boxes
-                .bonus__boxes-item
-                    .box
-                        .box__cap
-                            //.box__cap-front
-                            //.box__cap-back
-                        .box__inside
-                        .box__body
-                        .box__prize
-                            .box__prize-top(data-translate="boxesText") бонус у вигляді
-                            .box__prize-bottom(data-translate="boxesPrize") 20 фріспінів
-                //.bonus__boxes-item
-                //    .box
-                //        .box__cap
-                //            .box__cap-front
-                //            .box__cap-back
-                //        .box__inside
-                //        .box__body
-                //        .box__prize
-                //            .box__prize-top(data-translate="boxesText2") Бонус “Страховка ставки”
-                //            .box__prize-bottom(data-translate="boxesPrize2") до 500 ₴
-                //.bonus__boxes-item
-                //    .box
-                //        .box__cap
-                //            .box__cap-front
-                //            .box__cap-back
-                //        .box__inside
-                //        .box__body
-                //        .box__prize
-                //            .box__prize-top(data-translate="boxesText") бонус у вигляді
-                //            .box__prize-bottom(data-translate="boxesPrize3") 500 ₴ #[span на рахунок]
-            .bonus__btn.btn.get-btn._lock(data-translate="getBtn") отримати приз
+            //.bonus__boxes
+            //    .bonus__boxes-item
+            //        .box
+            //            .box__cap
+            //                //.box__cap-front
+            //                //.box__cap-back
+            //            .box__inside
+            //            .box__body
+            //            .box__prize
+            //                .box__prize-top(data-translate="boxesText") бонус у вигляді
+            //                .box__prize-bottom(data-translate="boxesPrize") 20 фріспінів
+            //    //.bonus__boxes-item
+            //    //    .box
+            //    //        .box__cap
+            //    //            .box__cap-front
+            //    //            .box__cap-back
+            //    //        .box__inside
+            //    //        .box__body
+            //    //        .box__prize
+            //    //            .box__prize-top(data-translate="boxesText2") Бонус “Страховка ставки”
+            //    //            .box__prize-bottom(data-translate="boxesPrize2") до 500 ₴
+            //    //.bonus__boxes-item
+            //    //    .box
+            //    //        .box__cap
+            //    //            .box__cap-front
+            //    //            .box__cap-back
+            //    //        .box__inside
+            //    //        .box__body
+            //    //        .box__prize
+            //    //            .box__prize-top(data-translate="boxesText") бонус у вигляді
+            //    //            .box__prize-bottom(data-translate="boxesPrize3") 500 ₴ #[span на рахунок]
+            .bonus__btn.btn.get-btn._lock.hide(data-translate="getBtn") отримати приз
+            .bonus__btn.btn.unauth-msg.hide(data-translate="signBtn") авторизуйся
+            //.bonus__btn.btn.part-btn.hide(data-translate="partBtn") взяти участь
             .bonus__upd
                 .bonus__upd-text
                     span.bonus__upd-text-item(data-translate="lastUpd") Останнє оновлення було о
@@ -117,7 +122,8 @@ button.menu-btn menu
                     .timer__seconds
                         span.timer__seconds-item 0
                         span.timer__seconds-item 0
-            .bonus__btn.btn.part-btn(data-translate="partBtn") взяти участь
+            .bonus__btn.btn.part-btn.hide(data-translate="partBtn") взяти участь
+            .bonus__btn.btn.unauth-msg(data-translate="signBtn") авторизуйся
     .result
         .fav-wrap
             .result__title

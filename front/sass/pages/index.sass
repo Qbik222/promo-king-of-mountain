@@ -6,6 +6,7 @@ $magenta: #D41C6A
 $green: #05C48A
 $dark-green: #0F5D5A
 $black: #1B1B1F
+$dark: #191A23
 
 $font-suisse-intl-reg: SuisseIntl-Regular, sans-serif
 $font-suisse-intl-bold: SuisseIntl-Bold, sans-serif
@@ -89,6 +90,8 @@ body
   text-align: center
   padding: 14px 15px
   transition: all .4s ease-in-out
+  &.hide
+    display: none !important
   &._lock
     filter: grayscale(100%)
     pointer-events: none
@@ -875,7 +878,7 @@ body
     margin-top: 30px
     padding: 10px
     gap: 10px
-    margin-bottom: 20px
+    margin-bottom: 35px
     &::before
       content: ""
       display: block
@@ -906,10 +909,10 @@ body
     text-align: center
     border-radius: 8px
     background: rgba(255, 255, 255, 0.10)
-    margin: 0 0 25px
+    //margin: 0 0 25px
     position: absolute
     left: 50%
-    bottom: 300px
+    bottom: 314px
     z-index: 6
     transform: translate(-50%, 0)
     transition: all .7s ease-in-out
@@ -1246,6 +1249,7 @@ details summary::-webkit-details-marker
     justify-content: center
     align-items: center
     transition: all .7s ease-in-out
+    position: relative
     &-lock
       position: absolute
       width: 100%
@@ -1258,7 +1262,7 @@ details summary::-webkit-details-marker
       display: none
       &-text
         position: absolute
-        top: 60%
+        top: 30%
         left: 50%
         transform: translate(-50%, 0)
         z-index: 3
@@ -1579,39 +1583,51 @@ details summary::-webkit-details-marker
 .caoOpenBack
   display: none
 
-//  0%
-//    transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg)
-//    opacity: 0
-//  19%
-//    opacity: 1
-//  20%
-//    transform: rotateX(80deg) rotateY(0deg) rotateZ(0deg) translate(0px, -120px)
-//    opacity: 1
-//  100%
-//    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(0px, 0)
 
-//@keyframes caseOpen
-//  0%
-//    width: 123px
-//    height: 240px
-//    position: absolute
-//    top: -12px
-//    left: 76px
-//    transform:  rotateX(-95deg) rotateY(-1.5deg) rotateZ(-16deg)
-//
-//  50%
-//    width: 144px
-//    height: 240px
-//    position: absolute
-//    top: 30px
-//    left: 56px
-//    transform: rotateX(-47.5deg) rotateY(0deg) rotateZ(-8deg)
-//
-//  100%
-//    width: 165px
-//    height: 240px
-//    position: absolute
-//    top: 23px
-//    left: 36px
-//    z-index: 2
-//    transform: rotateX(0) rotateY(0) rotateZ(0)
+
+// DARK
+
+body.dark
+  background: $dark
+  .fav-page
+    background: $dark
+  .welcome
+    &::before
+      background: linear-gradient(180deg, rgba(0, 0, 61, 0) 0%, $dark 60%)
+    &__decor
+      &::before
+        background: linear-gradient(180deg, rgba(0, 0, 61, 0) 65%, $dark 83%)
+  .bonus
+    background: url("../img/bonus/bg-desc-dark.png") no-repeat 50% 0/cover
+    background-size: 1730px 890px
+    .fav-wrap
+      &::before
+        background: url("../img/bonus/timer-bg-desc-dark.png") no-repeat 0 0/contain
+        @media screen and (max-width: 600px)
+          background: url("../img/bonus/timer-bg-mob-dark.png") no-repeat 0 0/contain
+          min-width: 450px
+          max-width: 450px
+          height: 280px
+  .drop-txt
+    background: rgba($dark, .79)
+  .drop-txt-list
+    background: $dark
+  .result
+    &::before
+      background: url("../img/result/result-bg-dark.png") no-repeat 0 0/contain
+      @media screen and (max-width: 950px)
+        background: url("../img/result/result-bg-tab-dark.png") no-repeat 0 0/contain
+        height: 1200px
+        min-width: 850px
+        max-width: 850px
+      @media screen and (max-width: 600px)
+        background: url("../img/result/result-bg-mob-dark.png") no-repeat 0 0/contain
+        height: 1040px
+        min-width: 470px
+        max-width: 470px
+        left: 52%
+  .table
+    &::before
+      background: url("../img/table/table-bottom-dark.png") no-repeat 0 0/contain
+    &::after
+      background: url("../img/table/table-bg-dark.png") no-repeat 0 0/contain
