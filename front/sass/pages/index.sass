@@ -1,11 +1,9 @@
-$blue: #000055
 $second-blue: #020344
 $dark-blue: #00003D
 $white: #ffffff
 $magenta: #D41C6A
 $green: #05C48A
 $dark-green: #0F5D5A
-$black: #1B1B1F
 $dark: #191A23
 
 $font-suisse-intl-reg: SuisseIntl-Regular, sans-serif
@@ -16,13 +14,11 @@ $font-roboto-cond-exbold: RobotoCondensed-ExtraBold, sans-serif
 $font-roboto-cond-black: RobotoCondensed-Black, sans-serif
 $font-roboto-cond-black-it: RobotoCondensed-BlackItalic, sans-serif
 $font-roboto-black-it: Roboto-BlackItalic, sans-serif
-$font-roboto-exbold: Roboto-ExtraBold, sans-serif
 
 .hidden
   display: none !important
 
 .hide
-  //display: none !important
   opacity: 0
   transition: opacity .2s linear
   pointer-events: none
@@ -132,7 +128,6 @@ body
     height: 840px
     position: absolute
     left: 50%
-
   &__decor
     min-width: 1315px
     max-width: 1315px
@@ -153,7 +148,6 @@ body
       bottom: -2px
       left: 50%
       transform: translate(-50%, 0)
-      //background: black
       background: linear-gradient(180deg, rgba(0, 0, 61, 0.00) 65%, #00003D 83%)
     @media screen and (max-width: 950px)
       background: url("../img/welcome/boxes-tab.png") no-repeat 0 0/contain
@@ -191,11 +185,9 @@ body
       position: relative
       text-shadow: 1px 3px 0px rgba(121, 24, 60, 0.80)
       filter: drop-shadow(6.275px 7.529px 0px #9F0E49)
-        //drop-shadow(0px 0px 9.147px rgba(255, 106, 169, 0.1)) drop-shadow(0px 0px 9.147px rgba(255, 106, 169, 0.6))
       &-item
         position: relative
         z-index: 2
-      //background: $magenta
       &::before, &::after
         content: ""
         display: block
@@ -216,7 +208,6 @@ body
         z-index: 0
         width: 100%
         height: 100%
-
     &-text
       padding: 4px 52px 6px
       z-index: 1
@@ -256,7 +247,6 @@ body
     background: url("../img/bonus/bg-mob.png") no-repeat 50% 30%/cover
     background-size: 600px 620px
   @media screen and (max-width: 450px)
-    //background-position: 50% 50%
     background-size: 470px 770px
   &__btn
     z-index: 2
@@ -326,7 +316,6 @@ body
       mask-size: 100% 100%
       z-index: 0
       position: absolute
-
     &::before
       background: $dark-green
       width: calc(100% - 4px)
@@ -341,7 +330,6 @@ body
       background: linear-gradient(to bottom, #00FAFF, #BEFEFF)
       left: 0
       top: 0
-
     &-lvl
       color: rgba($white, .4)
       font-family: $font-roboto-cond-black-it
@@ -363,17 +351,11 @@ body
       .lvl-bar
         display: block
         position: absolute
-        //mask-image: url("../img/bonus/progress-lvl-active-mask.png")
-        //mask-image: url("../img/bonus/progress-lvl-mask.png")
-        //mask-repeat: no-repeat
-        //mask-size: 100% 100%
-        //width: 67px
         opacity: 0
         width: 100px
         height: 42px
         right: 2px
         bottom: 2px
-        //background: #411528
         transition: all .4s ease-in-out
         z-index: 1
         overflow: hidden
@@ -383,7 +365,6 @@ body
           width: 68px
           max-width: 100%
           height: 42px
-          //mask-image: url("../img/bonus/progress-lvl-active-mask.png")
           mask-image: url("../img/bonus/progress-lvl-active-mask.png")
           mask-repeat: no-repeat
           mask-size: 100% 100%
@@ -409,8 +390,6 @@ body
           mask-image: url("../img/bonus/progress-lvl-mask.png")
           mask-repeat: no-repeat
           mask-size: 100% 100%
-
-
       &:not(:last-child)
         margin-right: -7px
       &::before, &::after
@@ -432,7 +411,6 @@ body
         width: 100%
         height: 100%
         background: #139C97
-
         z-index: 0
       span
         position: relative
@@ -450,7 +428,6 @@ body
       font-family: $font-roboto-black-it
       text-shadow: 0px 2.871px 2.871px rgba(0, 0, 0, 0.25)
       margin-bottom: 4px
-
       &-btn
         width: 16px
         height: 16px
@@ -462,7 +439,6 @@ body
         bottom: 1px
         &:hover
           cursor: pointer
-          //box-shadow: 0px 0px 5px $magenta
           background: $magenta  url("../img/info-icon.png") no-repeat 50% 0/contain
     &-center
       display: flex
@@ -500,19 +476,6 @@ body
       font-size: 14px
       font-family: $font-roboto-cond-reg
       text-align: center
-      //&::before
-      //  //content: ""
-      //  display: block
-      //  width: 100%
-      //  height: 100%
-      //  mask-image: url("../img/bonus/progress-bottom-mask.png")
-      //  mask-size: 100% 100%
-      //  mask-repeat: no-repeat
-      //  z-index: 0
-      //  position: absolute
-      //  left: 0
-      //  top: 0
-      //  background: rgba(#15A09B, .37)
       &::after
         background: url("../img/bonus/progress-bottom-mask.png") no-repeat 0 0/contain
         width: 100%
@@ -524,7 +487,6 @@ body
         z-index: -1
         filter: drop-shadow(0px 1px 4.5px rgba(21, 250, 255, 0.60))
         position: absolute
-
   &__bets
     display: flex
     position: relative
@@ -606,16 +568,13 @@ body
         mask-size: 100% 100%
         &:nth-child(1)
           margin-right: -19px
-
   &__boxes
     height: 325px
-    //width: 700px
     min-width: 670px
     max-width: 670px
     display: flex
     position: relative
     justify-content: space-between
-    //gap: 20px
     &::before
       content: ""
       display: block
@@ -644,16 +603,12 @@ body
           &__inside
             display: block
             opacity: 1
-            //transition: opacity .2s ease-in-out
           &__body
             z-index: 4
           &__prize
             z-index: 3
-              //translateZ(80px)
             transform:  scale(.7)
             opacity: 1
-          //&__inside
-            //transform: translateZ(80px)
       &._lock
         filter: grayscale(100%)
       &._left
@@ -661,7 +616,6 @@ body
         left: 0%
       &._right
         position: absolute
-        //left: 99%
         left: 0
         transform: translate(230%, 0)
       &._active
@@ -669,7 +623,6 @@ body
         transform-origin: top center
         position: absolute
         filter: none
-        //left: 52%
         left: 0
         transform: translate(100%, 0)
         .box
@@ -683,13 +636,6 @@ body
         .box
           &__body
             background: url("../img/bonus/box1-body-lock.png") no-repeat 0 0/contain
-        //order: 1
-        //&._active
-        //  //order: 3
-        //  .box
-        //    &__body
-        //      background: url("../img/bonus/box-body1.png") no-repeat 0 0/contain
-
       &:nth-child(2)
         .box
           &__body
@@ -697,13 +643,6 @@ body
         .box
           &__body
             background: url("../img/bonus/box2-body-lock.png") no-repeat 0 0/contain
-          //&__prize
-        //order: 3
-        //&._active
-        //  //order: 2
-        //  .box
-        //    &__body
-        //      background: url("../img/bonus/box-body2.png") no-repeat 0 0/contain
       &:nth-child(3)
         .box
           &__body
@@ -716,13 +655,6 @@ body
             &-bottom
               span
                 font-size: 14px
-
-        //&._active
-          //order: 2
-          //.box
-          //  &__body
-          //    background: url("../img/bonus/box-body3.png") no-repeat 0 0/contain
-
 
   &__progress, &__upd
     position: relative
@@ -740,7 +672,6 @@ body
       border: 2px solid rgba(255, 200, 223, 0.30)
       background: rgba(0, 0, 0, 0.9)
       box-shadow: 0px 0px 6px 0px rgba(255, 106, 169, 0.80)
-      //backdrop-filter: blur(1px)
       &-content
         color: $white
         font-family: $font-roboto-cond-reg
@@ -772,16 +703,11 @@ body
     position: relative
     width: 100%
     height: 100%
-    //perspective: 200px
-    //transform-style: preserve-3d !important
     &::before
       content: ""
       display: block
       position: absolute
-      //filter: blur(2px)
-
       background: radial-gradient(circle at 50% 50%, #ffffff 0%, rgba(255, 164, 189, 0.8) 30%, rgba(255, 38, 126, 0.6) 50%, rgba(116, 23, 151, 0.3) 75%, rgba(0, 0, 85, 0) 100%)
-      //background: radial-gradient(circle at 50% 50%, #ffffff, #ffa4bd, #ff267e, #741797, #000055)
       width: 100px
       height: 100px
       bottom: 155px
@@ -792,7 +718,6 @@ body
       transform: translate(0, 50%)
       transition: all 1s ease-in-out
     &__cap
-      //display: none
       position: absolute
       width: 180px
       height: 30px
@@ -801,8 +726,6 @@ body
       z-index: 3
       transform-origin: top center
       transition: transform 1s ease-in-out
-
-      //transform-style: preserve-3d
       &.open
         transform: none
         z-index: 1
@@ -813,12 +736,6 @@ body
         .box__cap-front
           transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg) translate(0px, 0px)
           opacity: 0
-        //  transition: all .4s ease-in-out
-        //  bottom: 20px
-
-      //&.close
-      //  transform: rotateX(0deg) rotateY(0deg) rotateZ(0) translate(0px, 0px)
-
       &-front, &-back
         position: absolute
         width: 98%
@@ -827,17 +744,13 @@ body
         left: 0
         backface-visibility: hidden
         -webkit-backface-visibility: hidden
-
       &-front
         background: url("../img/bonus/box-cap-back.png") no-repeat center / contain
         height: 50px
         top: auto
         bottom: -25px
         transition: all .2s ease-in-out
-        //transform: rotateX(100deg) rotateY(4deg) rotateZ(0) translate(0px, 0px) translateZ(0px)
         transform-origin: bottom center
-
-
       &-back
         width: 180px
         height: 90px
@@ -847,9 +760,6 @@ body
         left: 18px
         top: -57px
         transition: all 1s ease-in-out
-        //transform: rotateY(180deg) rotateX(-30deg) scale(-1, -1) translate(7px, 61px)
-        //transform: rotateY(177deg) rotateX(-72deg) scale(-1, -1) translate(7px, 46px)
-        //transform: rotateY(177deg) rotateX(-72deg) scale(-1, -1) translate(42px, 57px)
     &__inside
       width: 165px
       height: 40px
@@ -857,11 +767,7 @@ body
       left: 23px
       top: 110px
       display: none
-      //transform: translateZ(60px) scale(.78)
-      //transform: translateZ(60px) scale(1)
-      //opacity: 0
       background: url("../img/bonus/box-inside.png") no-repeat 0 0/contain
-
     &__body
       width: 176px
       height: 130px
@@ -869,17 +775,11 @@ body
       left: 15px
       top: 114px
       z-index: 2
-      //transform: translateZ(70px) scale(1)
-
     &__prize
       position: absolute
       bottom: 200px
-      //height: 100%
-      //backdrop-filter: blur(5px)
       width: fit-content
       max-width: 145px
-      //max-height: 80px
-      // translateZ(30px)
       transform: translate(0, 100%) scale(.2)
       opacity: 0
       transition: all .7s ease-in-out
@@ -888,7 +788,6 @@ body
       border-radius: 8px
       border: 1.649px solid rgba(248, 225, 234, 0.70)
       background: rgba(212, 30, 108, 0.02)
-      //box-shadow: 0px 0px 8.291px 0px rgba(255, 106, 169, 0.80), 0px 0px 8.291px 0px rgba(255, 106, 169, 0.20), 0px 0px 8.291px 0px rgba(255, 106, 169, 0.30), 0px 0px 8.291px 0px rgba(255, 106, 169, 0.30), 0px 0px 8.291px 0px rgba(255, 106, 169, 0.30), 0px 0px 8.291px 0px rgba(255, 106, 169, 0.30), 0px 0px 8.291px 0px rgba(255, 106, 169, 0.30)
       &-top, &-bottom
         color: $white
         font-family: $font-roboto-cond-black-it
@@ -897,11 +796,8 @@ body
       &-top
         font-size: 14px
         text-shadow: 0px 0.824px 1.649px rgba(23, 27, 78, 0.20), 0px 1.649px 1.649px rgba(213, 18, 18, 0.49)
-
       &-bottom
         font-size: 20px
-
-
   &__upd
     display: flex
     align-items: center
@@ -942,7 +838,6 @@ body
     text-align: center
     border-radius: 8px
     background: rgba(255, 255, 255, 0.10)
-    //margin: 0 0 25px
     position: absolute
     left: 50%
     bottom: 334px
@@ -1040,13 +935,8 @@ body
           padding: 3px 2px 0 0
           &:nth-child(1)
             margin-right: -12px
-
-
-
-
 details summary::-webkit-details-marker
   display: none
-
 .drop
   max-width: 100%
   width: 100%
@@ -1091,7 +981,6 @@ details summary::-webkit-details-marker
       border-right: 5.5px solid transparent
       border-bottom: 8px solid #FF77B1
       transform: rotate(180deg)
-
   &-txt
     padding: 15px
     margin-top: 10px
@@ -1112,7 +1001,6 @@ details summary::-webkit-details-marker
       display: flex
       flex-direction: column
       gap: 15px
-      
       p, strong
         font-size: 16px
         line-height: 26px
@@ -1129,7 +1017,6 @@ details summary::-webkit-details-marker
         font-family: $font-suisse-intl-reg
       td
         padding-left: 5px
-
 
 .retreat1, .retreat2
   padding-left: 15px
@@ -1198,7 +1085,6 @@ details summary::-webkit-details-marker
       height: 380px
       top: 150px
       opacity: .8
-
   &__title
     max-width: 790px
     z-index: 4
@@ -1247,7 +1133,6 @@ details summary::-webkit-details-marker
       top: 250px
       &.hide
         display: none
-
       &-content
         color: $white
         font-family: $font-roboto-cond-reg
@@ -1287,8 +1172,6 @@ details summary::-webkit-details-marker
       position: absolute
       width: 100%
       height: 200%
-      //backdrop-filter: blur(3px)
-      //display: flex
       align-items: flex-start
       justify-content: center
       z-index: 3
@@ -1310,7 +1193,6 @@ details summary::-webkit-details-marker
         background: url("../img/table/lock-bg.png") no-repeat 0 0/contain
         font-family: $font-roboto-cond-black-it
         font-size: 19px
-        //margin-top: 460px
         padding: 0 20px 0 0
         &:before
           content: ""
@@ -1319,7 +1201,6 @@ details summary::-webkit-details-marker
           height: 24px
           margin-right: 5px
           background: url("../img/table/lock.png") no-repeat 0 0/contain
-
     &-nav-scroll
       padding: 5px 0
       position: relative
@@ -1338,7 +1219,6 @@ details summary::-webkit-details-marker
         min-height: 48px
         min-width: 115px
         position: sticky
-        //top: 0
         pointer-events: none
         z-index: 3
       &::before
@@ -1363,7 +1243,6 @@ details summary::-webkit-details-marker
         &::-webkit-scrollbar-thumb
           background: $green
           border-radius: 5px
-
       &-item
         color: $white
         font-family: $font-roboto-cond-bold
@@ -1399,11 +1278,9 @@ details summary::-webkit-details-marker
             backdrop-filter: blur(3px)
             &-text
               display: flex
-
   &__btn
     z-index: 4
     margin-top: -125px
-
 
 .table
   position: relative
@@ -1423,8 +1300,6 @@ details summary::-webkit-details-marker
     bottom: -115px
     left: -10px
     z-index: 3
-    //border-radius: 100%
-    //background: radial-gradient(ellipse at center, rgba(0, 0, 61, 1) 30%, rgba(0, 0, 61, 0.7) 70%, transparent 100%)
   &::after
     content: ""
     display: block
@@ -1452,7 +1327,6 @@ details summary::-webkit-details-marker
       margin-top: 8px
       &-counter
         font-family: $font-roboto-cond-reg
-        //color: $second-blue
         color: $white
         font-size: 24px
         margin-right: 7px
@@ -1462,7 +1336,6 @@ details summary::-webkit-details-marker
         text-transform: uppercase
         font-family: $font-roboto-cond-reg
         font-size: 10px
-        //color: $second-blue
         color: $white
   &__block
     display: flex
@@ -1500,8 +1373,6 @@ details summary::-webkit-details-marker
       border-radius: 5px
       text-transform: uppercase
       white-space: nowrap
-
-
     &-icon
       max-width: 58px
       opacity: .5
@@ -1581,8 +1452,6 @@ details summary::-webkit-details-marker
           &-counter, &-text
             color: $second-blue
 
-
-
 @keyframes shake
   0%
     transform: translateX(101%)
@@ -1590,15 +1459,6 @@ details summary::-webkit-details-marker
     transform: translateX(99%) rotate(-2deg)
   20%, 40%, 60%, 80%, 100%
     transform: translateX(101%) rotate(2deg)
-
-
-//@keyframes shake
-//  0%
-//    transform: translateX(4px)
-//  10%, 30%, 50%, 70%, 90%
-//    transform: translateX(-4px) rotate(-2deg)
-//  20%, 40%, 60%, 80%, 100%
-//    transform: translateX(4px) rotate(2deg)
 
 .shake
   animation: shake 1s ease-in-out
@@ -1608,7 +1468,6 @@ details summary::-webkit-details-marker
     transform: none
     opacity: 1
   100%
-    //transform: rotateX(86.5deg) rotateY(44deg) rotateZ(37deg) translate(0px, 0px)
     transform: rotateX(60deg) rotateY(0deg) rotateZ(40deg) translate(0px, 0px)
     z-index: 0
 
@@ -1625,8 +1484,6 @@ details summary::-webkit-details-marker
 
 .caoOpenBack
   display: none
-
-
 
 // DARK
 
