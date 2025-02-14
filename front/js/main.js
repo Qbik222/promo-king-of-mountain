@@ -206,27 +206,55 @@
     }
 
     const renderUsers = (users) => {
-        const currentUser = userId && users.find(user => user.userid === userId);
-        if (users && users.length) {
-            let topUsers = users.slice(0, 4);
-            if(currentUser){
-                const currentUserIndex = currentUser && users.indexOf(currentUser);
-                topUsers = [...topUsers, currentUser]
-                populateUsersTable(topUsers, userId, resultsTable, users, currentUserIndex);
-            }else{
-                populateUsersTable(topUsers, userId, resultsTable, users, 4);
+        const groupedByDate = users.reduce((acc, user) => {
+            const date = user.date.split("T")[0];
+            acc[date] = acc[date] || [];
+            acc[date].push(user);
+            return acc;
+        }, {});
+        const dates = Object.keys(groupedByDate).sort((a, b) => new Date(b) - new Date(a));
+        let activeDate = dates[0];
+
+        const updateActiveDate = (date) => {
+            activeDate = date;
+
+            document.querySelectorAll(".result__table-nav-item").forEach((el) => {
+                el.classList.toggle("_active", el.dataset.date === date);
+            });
+            const currentUsers = groupedByDate[date] || [];
+            const currentUser = userId && currentUsers.find(user => user.userid === userId);
+            let topUsers = currentUsers.slice(0, 4);
+            if (currentUser) {
+                const currentUserIndex = currentUsers.indexOf(currentUser);
+                topUsers = [...topUsers, currentUser];
+                populateUsersTable(topUsers, userId, resultsTable, currentUsers, currentUserIndex);
+            } else {
+                populateUsersTable(topUsers, userId, resultsTable, currentUsers, 4);
             }
+        };
 
-        }
+        const navContainer = document.querySelector(".result__table-nav");
+        navContainer.innerHTML = dates.map((date, index) => `
+        <div class="result__table-nav-item ${index === 0 ? "_active" : ""}" data-date="${date}">
+            ${new Date(date).toLocaleDateString("uk-UA", { day: "2-digit", month: "2-digit" })}
+        </div>
+    `).join("");
 
-    }
+        navContainer.addEventListener("click", (event) => {
+            if (event.target.classList.contains("result__table-nav-item")) {
+                updateActiveDate(event.target.dataset.date);
+            }
+        });
+
+        updateActiveDate(activeDate);
+    };
+
+
 
 
     function populateUsersTable(users, currentUserId, table, allUsers, userIndex) {
         table.innerHTML = '';
         let currentUser = users[users.length - 1]
-        // console.log(users)
-
         const createRow = (columns) => {
             const row = document.createElement("div");
             row.classList.add("table__row");
@@ -421,7 +449,6 @@
             userTablePlace = userPlace.querySelector(".table__block-place");
 
         let idArr = userTablePlace.textContent.split("")
-        console.log(idArr)
         if(idArr.length === 1){
             userTablePlace.classList.add('_one')
         }
