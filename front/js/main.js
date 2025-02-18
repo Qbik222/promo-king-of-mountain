@@ -57,9 +57,9 @@
     let debug = true;
     let i18nData = {};
     const translateState = true;
-    let userId;
+    let userId = sessionStorage.getItem("userId") ? Number(sessionStorage.getItem("userId")) : null
     // userId = 100300268;
-    userId = 100856888;
+    // userId = 100856888;
 
     function getData() {
         return Promise.all([
@@ -663,6 +663,7 @@
     const betClear = document.querySelector(".bet-clear")
     const btnLock = document.querySelector(".btn-lock")
     const darkBtn = document.querySelector(".dark-btn")
+    const authBtn = document.querySelector(".auth-btn")
 
     betWin.textContent = `win bet: ${betWinCounter}`
 
@@ -714,6 +715,15 @@
 
     darkBtn.addEventListener("click", () =>{
         document.body.classList.toggle("dark")
+    })
+
+    authBtn.addEventListener("click", () =>{
+        if(userId){
+            sessionStorage.removeItem("userId")
+        }else{
+            sessionStorage.setItem("userId", '100856888')
+        }
+       window.location.reload()
     })
 
 })()
