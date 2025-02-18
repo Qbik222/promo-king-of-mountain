@@ -30,8 +30,8 @@
       min-width: 385px
       max-width: 385px
     &__progress
-      margin-bottom: 55px
-      &-bottom
+      margin-bottom: 65px
+      &-wrap
         bottom: -8px
         left: 50%
     &__bets
@@ -83,7 +83,7 @@
       max-width: 600px
     &__table
       &-nav-scroll
-        max-width: 600px
+        max-width: 95vw
 
 @media screen and (max-width: 600px)
   .drop
@@ -98,11 +98,11 @@
       margin: 5px 0 5px
   .bonus
     &__warning
-      padding: 12px
+      padding: 12px 24px
       font-size: 14px
       line-height: 18px
       max-width: 95vw
-      bottom: 345px
+      bottom: 284px
     &__bets
       margin: 5px auto 0 auto
     &__subtitle
@@ -132,6 +132,10 @@
     transform-origin: left
     margin-top: -40px
   .result
+    &__bottom
+      max-width: 95vw
+      font-size: 11px
+      line-height: 16px
     &::after
       width: 250px
       height: 360px
@@ -145,7 +149,7 @@
       margin-top: 10px
       &-popup
         max-width: 95vw
-        top: 130px
+        top: 80px
 
 @media screen and (max-width: 390px)
   .bonus

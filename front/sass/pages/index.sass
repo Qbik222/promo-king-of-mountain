@@ -465,19 +465,23 @@ body
         height: 100%
         background: #0D7B7D
         z-index: 1
-    &-bottom
-      padding: 4px 12px 4px 17px
+    &-wrap
       position: absolute
       bottom: -14px
       left: 98%
       transform: translate(-50%, 100%)
+    &-bottom
+      padding: 4px 12px 4px 17px
       width: 345px
       color: $white
       font-size: 14px
       font-family: $font-roboto-cond-reg
       text-align: center
+      &.hide
+        display: none
       &::after
         background: url("../img/bonus/progress-bottom-mask.png") no-repeat 0 0/contain
+        background-size: 100% 100%
         width: 100%
         height: 100%
         content: ""
@@ -840,7 +844,7 @@ body
     background: rgba(255, 255, 255, 0.10)
     position: absolute
     left: 50%
-    bottom: 334px
+    bottom: 268px
     z-index: 6
     transform: translate(-50%, 0)
     transition: all .7s ease-in-out
@@ -1130,7 +1134,7 @@ details summary::-webkit-details-marker
       max-width: 730px
       max-height: 300px
       position: absolute
-      top: 250px
+      top: 200px
       &.hide
         display: none
       &-content
@@ -1281,6 +1285,14 @@ details summary::-webkit-details-marker
   &__btn
     z-index: 4
     margin-top: -125px
+  &__bottom
+    color: $white
+    font-family: $font-roboto-cond-reg
+    font-size: 14px
+    line-height: 18px
+    text-align: center
+    z-index: 4
+    margin-bottom: 15px
 
 .table
   position: relative
@@ -1522,7 +1534,7 @@ body.dark
     background: $dark
   .result
     &::before
-      background: url("../img/result/result-bg-dark.png") no-repeat 0 0/contain
+      background: $dark url("../img/result/result-bg-dark.png") no-repeat 0 0/contain
       @media screen and (max-width: 950px)
         background: url("../img/result/result-bg-tab-dark.png") no-repeat 0 0/contain
         height: 1200px
@@ -1539,3 +1551,10 @@ body.dark
       background: url("../img/table/table-bottom-dark.png") no-repeat 0 0/contain
     &::after
       background: url("../img/table/table-bg-dark.png") no-repeat 0 0/contain
+  .result
+    &__table
+      &-nav
+        &::before
+          background: linear-gradient(273deg, rgba($dark, 0) 65%, $dark 83%)
+        &::after
+          background: linear-gradient(90deg, rgba($dark, 0) 65%, $dark 83%)

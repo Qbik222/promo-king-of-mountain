@@ -18,7 +18,8 @@
         participateBtns = document.querySelectorAll('.part-btn'),
         redirectBtns = document.querySelectorAll('.btn-join'),
         mainPage = document.querySelector(".fav-page"),
-        resultsTable = document.querySelector(".table");
+        resultsTable = document.querySelector(".table"),
+        levelBottomText = document.querySelectorAll(".bonus__progress-bottom");
 
     let currentLvl = sessionStorage.getItem("currentLvl") ? Number(sessionStorage.getItem("currentLvl")) : 1
 
@@ -32,9 +33,30 @@
     if (ukLeng) locale = 'uk';
     if (enLeng) locale = 'en';
 
+    const testUsers = [
+        { userid: 100300256, bets: 10, date: "2025-02-18T12:00:00" },
+        { userid: 100300257, bets: 8, date: "2025-02-18T12:00:00" },
+        { userid: 100300258, bets: 7, date: "2025-02-18T12:00:00" },
+        { userid: 100300259, bets: 5, date: "2025-02-18T12:00:00" },
+        { userid: 100300252, bets: 3, date: "2025-02-18T12:00:00" },
+        { userid: 100300253, bets: 11, date: "2025-02-19T12:00:00" },
+        { userid: 100300245, bets: 8, date: "2025-02-19T12:00:00" },
+        { userid: 100300246, bets: 6, date: "2025-02-19T12:00:00" },
+        { userid: 100300247, bets: 4, date: "2025-02-19T12:00:00" },
+        { userid: 100300234, bets: 2, date: "2025-02-19T12:00:00" },
+        { userid: 100300232, bets: 11, date: "2025-02-20T12:00:00" },
+        { userid: 100300231, bets: 8, date: "2025-02-20T12:00:00" },
+        { userid: 100300222, bets: 6, date: "2025-02-21T12:00:00" },
+        { userid: 100300223, bets: 4, date: "2025-02-22T12:00:00" },
+        { userid: 100856882, bets: 5, date: "2025-02-23T12:00:00" },
+        { userid: 100856883, bets: 4, date: "2025-02-23T12:00:00" },
+        { userid: 100856884, bets: 3, date: "2025-02-23T12:00:00" },
+        { userid: 100856888, bets: 2, date: "2025-02-23T12:00:00" },
+    ];
+
     let debug = true;
     let i18nData = {};
-    const translateState = false;
+    const translateState = true;
     let userId;
     // userId = 100300268;
     userId = 100856888;
@@ -75,7 +97,12 @@
             refreshCases(currentLvl)
             getData().then(res =>{
                 let users = res[0].sort((a, b) => b.points - a.points);
-                renderUsers(users);
+                if(!debug){
+                    renderUsers(users);
+                }else{
+                    renderUsers(testUsers)
+                }
+
             })
         }
     }
@@ -97,6 +124,7 @@
     function loadTranslations() {
         return fetch(`${apiURL}/translates/${locale}`).then(res => res.json())
             .then(json => {
+                console.log(json.resultBottom)
                 i18nData = json;
                 translate();
                 var mutationObserver = new MutationObserver(function (mutations) {
@@ -131,23 +159,23 @@
         }
         return i18nData[key] || defaultVal || '*----NEED TO BE TRANSLATED----*   key:  ' + key;
     }
-
-    function displayUserInfo(userInfo) {
-        const bets = userInfo.bets.slice(0, 10);
-        // let bets = [{betDate: new Date(), status: 'undefined'}]
-        // refreshLastUpdatedDate(userInfo);
-    }
-
-    // function refreshLastUpdatedDate(userInfo) {
-    //     const dateContainer = document.querySelector('.result__last-upd');
-    //     const span = document.getElementById('lastUpd');
-    //     if (userInfo.lastUpdate) {
-    //         span.innerHTML = formatDate(userInfo.lastUpdate);
-    //         dateContainer.classList.remove('hide');
-    //     } else {
-    //         dateContainer.classList.add('hide');
-    //     }
+    //
+    // function displayUserInfo(userInfo) {
+    //     const bets = userInfo.bets.slice(0, 10);
+    //     // let bets = [{betDate: new Date(), status: 'undefined'}]
+    //     // refreshLastUpdatedDate(userInfo);
     // }
+    //
+    // // function refreshLastUpdatedDate(userInfo) {
+    // //     const dateContainer = document.querySelector('.result__last-upd');
+    // //     const span = document.getElementById('lastUpd');
+    // //     if (userInfo.lastUpdate) {
+    // //         span.innerHTML = formatDate(userInfo.lastUpdate);
+    // //         dateContainer.classList.remove('hide');
+    // //     } else {
+    // //         dateContainer.classList.add('hide');
+    // //     }
+    // // }
 
     function formatDate(date) {
         const localDate = new Date(date);
@@ -251,44 +279,51 @@
         updateActiveDate(activeDate);
     };
 
+    function populateUsersTable(users, currentUserId, table) {
+        table.innerHTML = ''; // Очищаємо таблицю перед рендерингом
 
-
-
-    function populateUsersTable(users, currentUserId, table, allUsers, userIndex) {
-        table.innerHTML = '';
-        let currentUser = users[users.length - 1]
         const createRow = (columns) => {
             const row = document.createElement("div");
             row.classList.add("table__row");
-            row.style.setProperty("--columns", columns);
+            row.style.setProperty("--columns", columns); // Стилі для колонок
             return row;
-            };
+        };
+
         const createUserBlock = (user, extraClass = "", place) => {
             const block = document.createElement("div");
-            if(extraClass){
-                block.classList.add("table__block", extraClass);
-            }else{
-                block.classList.add("table__block");
-            }
+            block.classList.add("table__block");
+            if (extraClass) block.classList.add(extraClass);
 
             const icon = document.createElement("div");
             icon.classList.add("table__block-icon");
-
             const img = document.createElement("img");
             img.src = "./img/table/icon.png";
             img.alt = "Favbet";
             icon.appendChild(img);
             block.appendChild(icon);
 
-            if (user) {
-                const info = document.createElement("div");
-                info.classList.add("table__block-info");
-                info.innerHTML = `
-                <div class="table__block-place">${place}</div>
-                <div class="table__block-id">id ${user.userid}</div>
-            `;
-                block.appendChild(info);
+            const info = document.createElement("div");
+            info.classList.add("table__block-info");
 
+            let idContent = '';
+            if (user && user.userid) {
+                idContent = user.userid === currentUserId
+                    ? `<div class="your-id" data-translate="yourId">Твоє id</div>`
+                    : `id ${user.userid}`;
+            } else {
+                idContent = null;
+            }
+
+            // Якщо користувач є, то рендеримо місце
+            const placeContent = user ? `<div class="table__block-place">${place}</div>` : '';
+
+            info.innerHTML = `
+        ${placeContent}  <!-- Показуємо місце користувача тільки якщо є користувач -->
+        ${idContent ? `<div class="table__block-id">${idContent}</div>` : ""}
+        `;
+            block.appendChild(info);
+
+            if (user) {
                 const bets = document.createElement("div");
                 bets.classList.add("table__info-bets");
                 bets.innerHTML = `
@@ -300,38 +335,65 @@
 
             return block;
         };
-        if (users && users.length) {
-            const row1 = createRow(1);
-            row1.appendChild(createUserBlock(users[0], "_first", 1));
-            table.appendChild(row1);
 
-            const row2 = createRow(2);
-            row2.appendChild(createUserBlock(users[1], "_second", 2));
-            row2.appendChild(createUserBlock(users[2], "_second", 3));
-            table.appendChild(row2);
-
-            const row3 = createRow(3);
-            if(userId){
-                row3.appendChild(createUserBlock(null));
-                row3.appendChild(createUserBlock(currentUser, "you", userIndex));
-                row3.appendChild(createUserBlock(null));
-                table.appendChild(row3);
-            }else{
-                row3.appendChild(createUserBlock(null));
-                row3.appendChild(createUserBlock(users[3], "you", userIndex));
-                row3.appendChild(createUserBlock(null));
-                table.appendChild(row3);
+        // Фільтруємо користувачів, щоб додати їх унікально
+        let addedUserIds = new Set();
+        const uniqueUsers = users.filter(user => {
+            if (!addedUserIds.has(user.userid)) {
+                addedUserIds.add(user.userid);
+                return true;
             }
+            return false;
+        });
 
+        // Налаштування рядків
+        const rows = [1, 2, 3, 4]; // Налаштовуємо 4 рядки
+        const rowConfig = [
+            [{ user: uniqueUsers[0] || null, class: "_first" }],
+            [
+                { user: uniqueUsers[1] || null, class: "_second" },
+                { user: uniqueUsers[2] || null, class: "_second" }
+            ],
+            [
+                { user: null, class: "" },
+                { user: uniqueUsers.find(user => user.userid === currentUserId) || null, class: "you" },
+                { user: null, class: "" }
+            ],
+            [
+                { user: null, class: "" },
+                { user: null, class: "" },
+                { user: null, class: "" },
+                { user: null, class: "" }
+            ]
+        ];
 
-            const row4 = createRow(4);
-            for (let i = 0; i < 4; i++) {
-                row4.appendChild(createUserBlock(null));
-            }
-            table.appendChild(row4);
-            checkPlaceLength()
-        }
+        // Перевірка на наявність поточного користувача
+        const currentUserIndex = uniqueUsers.findIndex(user => user.userid === currentUserId);
+        const nextUser = currentUserIndex === -1 ? uniqueUsers[0] : uniqueUsers[currentUserIndex + 1];
+
+        // Якщо поточного користувача немає і він не в першій четвірці, то рендеримо наступного
+        const currentUserPlace = currentUserIndex < 4 ? currentUserIndex + 1 : null; // Якщо поточний користувач є у першій четвірці
+        const userToRender = currentUserPlace === null ? nextUser : null;
+
+        // Рендеримо кожен рядок
+        rows.forEach((columns, rowIndex) => {
+            const row = createRow(columns);
+            rowConfig[rowIndex].forEach(({ user, class: extraClass }, colIndex) => {
+                let place = uniqueUsers.indexOf(user) + 1;  // Знаходимо позицію користувача в унікальному списку
+
+                // Якщо поточного користувача нема в таблиці і він не в першій четвірці, рендеримо наступного
+                if (!user && userToRender) {
+                    user = userToRender; // Якщо поточного користувача немає, ставимо наступного
+                    place = uniqueUsers.indexOf(user) + 1; // Оновлюємо місце
+                }
+
+                row.appendChild(createUserBlock(user, extraClass, user ? place : '')); // Якщо користувач є, передаємо місце, інакше порожнє значення
+            });
+            table.appendChild(row); // Додаємо рядок до таблиці
+        });
     }
+
+
 
     function checkStatus() {
         betWinCounter < 6 ? document.querySelector(".result__table").classList.add("_lock") : null
@@ -402,6 +464,14 @@
             }
             // console.log(i < currentLvl, i , currentLvl, lvl)
             i < currentLvl ? lvl.classList.add("_done") : null
+            levelBottomText.forEach((item, i) =>{
+                if(currentLvl <= 3){
+                    item.classList.add("hide")
+                }
+                if(i === currentLvl - 1){
+                    item.classList.remove("hide")
+                }
+            })
         })
 
     }

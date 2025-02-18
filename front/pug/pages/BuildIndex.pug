@@ -25,7 +25,7 @@ button.menu-btn menu
             .welcome__decor
             .welcome__bonus
                 .welcome__bonus-prize #[span.welcome__bonus-prize-item(data-translate="welcomePrize") 10 000 ]
-                .welcome__bonus-text(data-translate="welcomeText") #[span.welcome__bonus-text-item(data-translate="welcomeText") щоденно ]
+                .welcome__bonus-text #[span.welcome__bonus-text-item(data-translate="welcomeText") щоденно ]
             .welcome__btn.btn.part-btn.hide(data-translate="partBtn" role="button") взяти участь
             a(data-translate="signBtn" href="/login/").welcome__btn.btn.unauth-msg.hide авторизуйся
             a(data-translate="playBtn" href="#").welcome__btn.btn.btn-join.hide грати
@@ -43,8 +43,13 @@ button.menu-btn menu
                         .bonus__progress-lvl #[span.lvl-1 1] #[span(data-translate="level") рівень] #[span.lvl-bar]
                         .bonus__progress-lvl #[span.lvl-2 2] #[span(data-translate="level") рівень] #[span.lvl-bar]
                         .bonus__progress-lvl #[span.lvl-3 3] #[span(data-translate="level") рівень] #[span.lvl-bar]
-                    .bonus__progress-bottom(data-translate="progressText").
-                        Ти на першому рівні. Щоб пройти його та отримати бонус треба зробити 999 виграшних ставок.
+                    .bonus__progress-wrap
+                        .bonus__progress-bottom.hide(data-translate="progressText").
+                            Ти на першому рівні. Щоб пройти його та отримати бонус треба зробити 999 виграшних ставок.
+                        .bonus__progress-bottom.hide(data-translate="progressText2").
+                            Ти на першому рівні. Щоб пройти його та отримати бонус треба зробити 999 виграшних ставок.
+                        .bonus__progress-bottom.hide(data-translate="progressText3").
+                            Ти на першому рівні. Щоб пройти його та отримати бонус треба зробити 999 виграшних ставок.
                     .bonus__progress-popup.hide
                         .bonus__progress-popup-close
                         .bonus__progress-popup-content(data-translate="progressPopup").
@@ -166,6 +171,7 @@ button.menu-btn menu
                     .result__table-nav
                 .result__table-lock
                 .result__table-lock-text(data-translate="tableLock") СПОЧАТКУ ПРОЙДИ ВСІ РІВНІ
+            .result__bottom(data-translate="resultBottom")
             .drop
                 details.dropdown
                     summary(data-translate="rulesBtn") Деталі
