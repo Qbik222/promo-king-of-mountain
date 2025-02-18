@@ -1,7 +1,7 @@
 (function() {
     // const apiURL = 'https://fav-prom.com/api_mountain_king'
     // const apiURL = 'https://fav-prom.com/api_vip',
-    const apiURL = 'https://fav-prom.com/api_champ_ro',
+    const apiURL = 'https://fav-prom.com/api_mountain_king',
         cases = document.querySelectorAll(".bonus__boxes-item"),
         getBtn = document.querySelector(".get-btn"),
         levels = document.querySelectorAll(".bonus__progress-lvl"),
@@ -24,11 +24,13 @@
 
     let lvlStatus = checkStatus();
     let betWinCounter = sessionStorage.getItem("betWinCounter") ? Number(sessionStorage.getItem("betWinCounter")) : 0
-    let locale = sessionStorage.getItem("locale") ? sessionStorage.getItem("locale") : "ro"
+    let locale = sessionStorage.getItem("locale") ? sessionStorage.getItem("locale") : "uk"
 
+    const ukLeng = document.querySelector('#ukLeng');
+    const enLeng = document.querySelector('#enLeng');
 
-    // if (ukLeng) locale = 'uk';
-    // if (enLeng) locale = 'en';
+    if (ukLeng) locale = 'uk';
+    if (enLeng) locale = 'en';
 
     let debug = true;
     let i18nData = {};
