@@ -246,10 +246,10 @@ body
   background: url("../img/bonus/bg-desc.png") no-repeat 50% 0/cover
   background-size: 1730px 890px
   @media screen and (max-width: 950px)
-    background: url("../img/bonus/bg-tab.png") no-repeat 50% 31%/cover
+    background: url("../img/bonus/bg-tab.png") no-repeat 50% 200px/cover
     background-size: 1490px 740px
   @media screen and (max-width: 600px)
-    background: url("../img/bonus/bg-mob.png") no-repeat 50% 30%/cover
+    background: url("../img/bonus/bg-mob.png") no-repeat 50% 120px/cover
     background-size: 600px 620px
   @media screen and (max-width: 450px)
     background-size: 470px 770px
@@ -259,6 +259,9 @@ body
   .fav-wrap
     position: relative
     padding-bottom: 30px
+    display: flex
+    flex-direction: column
+    align-items: center
     &::before
       content: ""
       display: block
@@ -279,6 +282,7 @@ body
     text-shadow: 2px 2px 0px $magenta
     font-size: 36px
     text-transform: uppercase
+    white-space: nowrap
     &::before, &::after
       content: ""
       display: block
@@ -605,6 +609,15 @@ body
       transition: all 1s ease-in-out
       will-change: transform !important
       filter: grayscale(100%)
+      &:nth-child(3)._show
+          .box
+            &__prize
+              max-width: 175px
+              transform: scale(0.8)
+              left: 20px
+              bottom: 210px
+              &-bottom
+                font-size: 15px
       &._show
         .box
           &::before
@@ -680,7 +693,7 @@ body
       transform: translate(-50%, 0)
       border-radius: 9px
       border: 2px solid rgba(255, 200, 223, 0.30)
-      background: rgba(0, 0, 0, 0.9)
+      background: rgba(0, 0, 61, 0.9)
       box-shadow: 0px 0px 6px 0px rgba(255, 106, 169, 0.80)
       &-content
         color: $white
@@ -705,8 +718,8 @@ body
         height: 20px
         z-index: 4
         position: absolute
-        top: 6px
-        right: 8px
+        top: 2px
+        right: 4px
         background: url("../img/close-icon.png") no-repeat 0 0/contain
         &:hover
           cursor: pointer
@@ -809,6 +822,8 @@ body
         text-shadow: 0px 0.824px 1.649px rgba(23, 27, 78, 0.20), 0px 1.649px 1.649px rgba(213, 18, 18, 0.49)
       &-bottom
         font-size: 20px
+        display: flex
+        align-items: center
   &__upd
     display: flex
     align-items: center
@@ -830,9 +845,11 @@ body
       font-size: 16px
       &-item
         color: $white
+        white-space: nowrap
       .last-upd
         color: $magenta
         margin-left: 5px
+        white-space: nowrap
     &-btn
       width: 24px
       height: 24px
@@ -965,8 +982,11 @@ details summary::-webkit-details-marker
     margin-bottom: 15px
   .dropdown[open] summary::before
     transform:  rotate(0deg)
+  summary:focus
+    outline: none
   summary
     list-style: none
+    outline: none
     padding: 15px
     font-family: $font-suisse-intl-reg
     font-size: 16px
@@ -1012,6 +1032,11 @@ details summary::-webkit-details-marker
       display: flex
       flex-direction: column
       gap: 15px
+      font-family: $font-suisse-intl-reg
+      color: $white
+      & > *
+        font-family: inherit
+        color: inherit
       p, strong
         font-size: 16px
         line-height: 26px
@@ -1105,6 +1130,7 @@ details summary::-webkit-details-marker
     z-index: 4
     position: relative
     &-btn
+      display: block
       width: 24px
       height: 24px
       background: url("../img/info-icon.png") no-repeat 0 0/contain
@@ -1527,6 +1553,9 @@ body.dark
       background-size: 600px 620px
     @media screen and (max-width: 450px)
       background-size: 470px 770px
+    &__progress
+      &-popup
+        background: rgba(0, 0, 0, 0.9)
     .fav-wrap
       &::before
         background: url("../img/bonus/timer-bg-desc-dark.png") no-repeat 0 0/contain
