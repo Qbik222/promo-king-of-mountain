@@ -59,6 +59,11 @@ body
   img
     max-width: 100%
     height: auto
+  picture.uk
+    display: block
+  picture.en
+    display: none
+
 
 .fav-wrap
   display: inherit
@@ -331,6 +336,7 @@ body
       left: 0
       top: 0
     &-lvl
+      min-width: 121px
       color: rgba($white, .4)
       font-family: $font-roboto-cond-black-it
       text-shadow: 0px 2.871px 2.871px rgba(0, 0, 0, 0.25)
@@ -1559,3 +1565,11 @@ body.dark
           background: linear-gradient(273deg, rgba($dark, 0) 65%, $dark 83%)
         &::after
           background: linear-gradient(90deg, rgba($dark, 0) 65%, $dark 83%)
+
+
+// en styles
+.fav-page.en
+  picture.uk
+    display: none
+  picture.en
+    display: block

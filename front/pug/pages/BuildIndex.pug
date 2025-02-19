@@ -11,18 +11,25 @@ button.menu-btn menu
     button.btn-lock lock
     button.dark-btn dark
     button.auth-btn auth
+    button.lng-btn en
 .fav-page#mountain-king
     .welcome
         .fav-wrap
             .welcome__top
                 img(src="./img/welcome/ball.png" alt="favbet")
             .welcome__title
-                picture
+                picture.uk
                     source(media="(max-width: 600px) and (orientation: portrait)" srcset="./img/welcome/title-mob.png")
                     source(media="(max-width: 950px) and (orientation: landscape) and (max-height: 450px)" srcset="./img/welcome/title-mob.png")
                     source(media="(min-width: 601px) and (max-width: 1050px) and (orientation: portrait)" srcset="./img/welcome/title-mob.png")
                     source(media="(min-width: 601px) and (orientation: landscape)" srcset="./img/welcome/title-desc.png")
                     img(src="./img/welcome/title-desc.png" alt="Favbet")
+                picture.en
+                    source(media="(max-width: 600px) and (orientation: portrait)" srcset="./img/welcome/title-mob-en.png")
+                    source(media="(max-width: 950px) and (orientation: landscape) and (max-height: 450px)" srcset="./img/welcome/title-mob-en.png")
+                    source(media="(min-width: 601px) and (max-width: 1050px) and (orientation: portrait)" srcset="./img/welcome/title-mob-en.png")
+                    source(media="(min-width: 601px) and (orientation: landscape)" srcset="./img/welcome/title-desc-en.png")
+                    img(src="./img/welcome/title-desc-en.png" alt="Favbet")
             .welcome__decor
             .welcome__bonus
                 .welcome__bonus-prize #[span.welcome__bonus-prize-item(data-translate="welcomePrize") 10 000 ]
@@ -132,12 +139,18 @@ button.menu-btn menu
     .result
         .fav-wrap
             .result__title
-                picture
+                picture.uk
                     source(media="(max-width: 600px) and (orientation: portrait)" srcset="./img/welcome/title-mob.png")
                     source(media="(max-width: 950px) and (orientation: landscape) and (max-height: 450px)" srcset="./img/welcome/title-mob.png")
                     source(media="(min-width: 601px) and (max-width: 1050px) and (orientation: portrait)" srcset="./img/welcome/title-tab.png")
                     source(media="(min-width: 601px) and (orientation: landscape)" srcset="./img/welcome/title-desc.png")
                     img(src="./img/welcome/title-desc.png" alt="Favbet")
+                picture.en
+                    source(media="(max-width: 600px) and (orientation: portrait)" srcset="./img/welcome/title-mob-en.png")
+                    source(media="(max-width: 950px) and (orientation: landscape) and (max-height: 450px)" srcset="./img/welcome/title-mob-en.png")
+                    source(media="(min-width: 601px) and (max-width: 1050px) and (orientation: portrait)" srcset="./img/welcome/title-tab-en.png")
+                    source(media="(min-width: 601px) and (orientation: landscape)" srcset="./img/welcome/title-desc-en.png")
+                    img(src="./img/welcome/title-desc-en.png" alt="Favbet")
             .result__subtitle
                 span.result__subtitle-btn
                 span.result__subtitle-text(data-translate="resultSubtitle").

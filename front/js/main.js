@@ -25,7 +25,7 @@
 
     let lvlStatus = checkStatus();
     let betWinCounter = sessionStorage.getItem("betWinCounter") ? Number(sessionStorage.getItem("betWinCounter")) : 0
-    let locale = sessionStorage.getItem("locale") ? sessionStorage.getItem("locale") : "uk"
+    let locale = sessionStorage.getItem("locale") ?? "uk"
 
     const ukLeng = document.querySelector('#ukLeng');
     const enLeng = document.querySelector('#enLeng');
@@ -332,7 +332,12 @@
             `;
                 block.appendChild(bets);
             }
-
+            const elems = table.querySelectorAll('[data-translate]')
+            elems.forEach(elem => {
+                const key = elem.getAttribute('data-translate');
+                elem.innerHTML = i18nData[key] || '*----NEED TO BE TRANSLATED----*   key:  ' + key;
+                elem.removeAttribute('data-translate');
+            })
             return block;
         };
 
@@ -664,6 +669,7 @@
     const btnLock = document.querySelector(".btn-lock")
     const darkBtn = document.querySelector(".dark-btn")
     const authBtn = document.querySelector(".auth-btn")
+    const lngBtn = document.querySelector(".lng-btn")
 
     betWin.textContent = `win bet: ${betWinCounter}`
 
@@ -725,6 +731,14 @@
         }
        window.location.reload()
     })
+    lngBtn.addEventListener("click", () => {
+        if (sessionStorage.getItem("locale")) {
+            sessionStorage.removeItem("locale");
+        } else {
+            sessionStorage.setItem("locale", "en");
+        }
+        window.location.reload();
+    });
 
 })()
 
