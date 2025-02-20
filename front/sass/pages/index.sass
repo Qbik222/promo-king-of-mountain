@@ -834,6 +834,14 @@ body
     padding: 10px
     gap: 10px
     margin-bottom: 35px
+    &._popup
+      border: none
+      &::before
+        opacity: 0
+      .bonus
+        &__upd
+          &-btn, &-text
+            opacity: 0
     &::before
       content: ""
       display: block
@@ -857,20 +865,24 @@ body
       &:hover
         cursor: pointer
   &__warning
+    display: flex
+    align-items: center
+    justify-content: center
     max-width: 705px
     width: 1000px
     padding: 24px
     color: $white
     font-size: 16px
+    min-height: 60px
     font-family: $font-roboto-cond-reg
     text-align: center
     border-radius: 8px
     background: rgba(255, 255, 255, 0.10)
     position: absolute
     left: 50%
-    bottom: 268px
+    top: 50%
     z-index: 6
-    transform: translate(-50%, 0)
+    transform: translate(-50%, -50%)
     transition: all .7s ease-in-out
     &-text
       font-family: inherit
@@ -1129,6 +1141,12 @@ details summary::-webkit-details-marker
     max-width: 730px
     z-index: 4
     position: relative
+    &._popup
+      margin-top: 40px
+      .result
+        &__subtitle
+          &-text, &-btn
+            opacity: 0
     &-btn
       display: block
       width: 24px
@@ -1148,7 +1166,8 @@ details summary::-webkit-details-marker
       line-height: 22px
       border-radius: 8px
       background: rgba(0, 0, 0, 0.30)
-      padding: 25px 16px 16px 16px
+      //padding: 25px 16px 16px 16px
+      padding: 25px 36px 16px 36px
       span
         color: $magenta
         font-size: 20px
@@ -1602,3 +1621,7 @@ body.dark
     display: none
   picture.en
     display: block
+  //@media screen and (max-width: 690px)
+  //  .bonus
+  //    &__warning
+  //      bottom: 0

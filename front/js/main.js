@@ -432,6 +432,7 @@
     }
 
     function refreshLvl(currentLvl, lvlStatus){
+        if(!userId) return
         levels.forEach((lvl, i) =>{
             lvl.classList.remove("_active")
             lvl.classList.remove("_done")
@@ -485,6 +486,12 @@
         cases.forEach((box, i) => {
             box.classList.remove("_active", "_left", "_right", "_lock");
         });
+        // if(!userId){
+        //     cases.forEach((box, i) => {
+        //         box.classList.add("_lock");
+        //     });
+        //     return
+        // }
 
         let activeIndex = currentLvl - 1;
         if (activeIndex >= cases.length) {
@@ -583,21 +590,22 @@
         btnOpen.addEventListener("click", () =>{
             popup.classList.remove("hide")
             if(hide){
-                btnOpen.parentNode.style.opacity = "0"
+                btnOpen.parentNode.classList.add("_popup")
             }
         })
         if(btnClose){
             btnClose.addEventListener("click", () =>{
+                btnOpen.parentNode.classList.remove("_popup")
                 popup.classList.add("hide")
-                if(hide){
-                    btnOpen.parentNode.style.opacity = "1"
-                }
+                // if(hide){
+                //     btnOpen.parentNode.classList.add("._popup")
+                // }
             })
             document.addEventListener("click", (e) =>{
                 if(!popup.contains(e.target) && e.target !== btnOpen){
                     popup.classList.add("hide")
                     if(hide){
-                        btnOpen.parentNode.style.opacity = "1"
+                        btnOpen.parentNode.classList.remove("_popup")
                     }
                 }
             })
