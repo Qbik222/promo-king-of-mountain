@@ -749,5 +749,19 @@
     });
 
 
+    const drops = document.querySelectorAll(".dropdown")
+
+        drops.forEach(drop =>{
+            drop.addEventListener("click", (event) => {
+                const scrollPosition = window.scrollY;
+                setTimeout(() => {
+                    window.scrollTo({ top: scrollPosition, behavior: "instant" });
+                }, 0);
+            });
+        })
+
+
+
+
 })()
 
