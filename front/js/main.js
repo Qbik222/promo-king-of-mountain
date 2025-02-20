@@ -753,33 +753,44 @@
 
     drops.forEach(drop => {
         drop.addEventListener("click", (event) => {
-            // Перевірка на iOS
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
-            // Перевірка на Safari
             const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
 
-            // Якщо пристрій не iOS і браузер не Safari
-            if (!isIOS && !isSafari) {
-                // Якщо відкриваємо дроп
-                    const scrollY = window.scrollY; // Запам'ятовуємо поточну позицію скролу
-                    document.body.style.position = "fixed"; // Фіксуємо body
-                    document.body.style.top = `-${scrollY}px`; // Переміщаємо body, щоб зберегти поточну позицію
-                    document.body.style.width = "100vw"; // Щоб не зміщувалася ширина при фіксації
-                    setTimeout(() => {
-                        const scrollY = Math.abs(parseInt(document.body.style.top, 10)); // Отримуємо збережений скрол
-                        document.body.style.position = ""; // Відновлюємо normal стан для body
-                        document.body.style.top = ""; // Скидаємо top
-                        document.body.style.width = ""; // Відновлюємо ширину
+            const isMobileSafari = isIOS && isSafari;
 
-                        // Повертаємося на збережену позицію
-                        window.scrollTo(0, scrollY);
-                    }, 0);
+            if (!isMobileSafari) {
+                // Блокуємо прокрутку сторінки без дергання
+                const scrollY = window.scrollY;
+                document.body.style.position = "fixed";
+                document.body.style.top = `-${scrollY}px`;
+                document.body.style.width = "100vw";
 
-                drop.classList.toggle("open"); // Перемикаємо стан дропдауну
+                // Додаємо корекцію для ширини, щоб уникнути стрибків сторінки
+                const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                if (scrollbarWidth > 0) {
+                    document.body.style.paddingRight = `${scrollbarWidth}px`;
+                }
+
+                setTimeout(() => {
+                    const savedScrollY = Math.abs(parseInt(document.body.style.top, 10));
+                    document.body.style.position = "";
+                    document.body.style.top = "";
+                    document.body.style.width = "";
+                    document.body.style.paddingRight = "";
+
+                    window.scrollTo(0, savedScrollY);
+                }, 0);
+            } else {
+                // Для iOS використовуємо alternative спосіб
+                setTimeout(() => {
+                    drop.scrollIntoView({ block: "nearest", behavior: "smooth" });
+                }, 100);
             }
+
+            drop.classList.toggle("open");
         });
     });
+
 
 
 
