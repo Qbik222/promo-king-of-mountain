@@ -159,23 +159,6 @@
         }
         return i18nData[key] || defaultVal || '*----NEED TO BE TRANSLATED----*   key:  ' + key;
     }
-    //
-    // function displayUserInfo(userInfo) {
-    //     const bets = userInfo.bets.slice(0, 10);
-    //     // let bets = [{betDate: new Date(), status: 'undefined'}]
-    //     // refreshLastUpdatedDate(userInfo);
-    // }
-    //
-    // // function refreshLastUpdatedDate(userInfo) {
-    // //     const dateContainer = document.querySelector('.result__last-upd');
-    // //     const span = document.getElementById('lastUpd');
-    // //     if (userInfo.lastUpdate) {
-    // //         span.innerHTML = formatDate(userInfo.lastUpdate);
-    // //         dateContainer.classList.remove('hide');
-    // //     } else {
-    // //         dateContainer.classList.add('hide');
-    // //     }
-    // // }
 
     function formatDate(date) {
         const localDate = new Date(date);
@@ -437,6 +420,7 @@
             document.querySelector(".bonus__progress-wrap").style.opacity = "0"
             return
         }
+        if(!userId) return
         levels.forEach((lvl, i) =>{
             lvl.classList.remove("_active")
             lvl.classList.remove("_done")
