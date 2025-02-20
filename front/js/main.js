@@ -753,47 +753,76 @@
     });
 
 
-    const drops = document.querySelectorAll(".dropdown");
+    const details = document.querySelector(".dropdown"); // Батьківський details
+    const dropdown = document.querySelector(".drop-txt");
 
-    drops.forEach(drop => {
-        drop.addEventListener("click", (event) => {
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
+    details.addEventListener("toggle", function () {
+        if (details.open) { // Спрацьовує тільки при відкритті
+            setTimeout(() => {
+                const rect = dropdown.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
 
-            const isMobileSafari = isIOS && isSafari;
-
-            if (!isMobileSafari) {
-                // Блокуємо прокрутку сторінки без дергання
-                const scrollY = window.scrollY;
-                document.body.style.position = "fixed";
-                document.body.style.top = `-${scrollY}px`;
-                document.body.style.width = "100%";
-
-                // Додаємо корекцію для ширини, щоб уникнути стрибків сторінки
-                const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-                if (scrollbarWidth > 0) {
-                    document.body.style.paddingRight = `${scrollbarWidth}px`;
+                // Якщо дропдаун виходить за межі екрану вниз
+                if (rect.bottom > viewportHeight) {
+                    window.scrollBy({
+                        top: rect.bottom - viewportHeight + 80, // 10px — запас
+                        behavior: "smooth"
+                    });
                 }
 
-                setTimeout(() => {
-                    const savedScrollY = Math.abs(parseInt(document.body.style.top, 10));
-                    document.body.style.position = "";
-                    document.body.style.top = "";
-                    document.body.style.width = "";
-                    document.body.style.paddingRight = "";
-
-                    window.scrollTo(0, savedScrollY);
-                }, 0);
-            } else {
-                // Для iOS використовуємо alternative спосіб
-                setTimeout(() => {
-                    drop.scrollIntoView({ block: "nearest", behavior: "smooth" });
-                }, 100);
-            }
-
-            drop.classList.toggle("open");
-        });
+                // Якщо дропдаун виходить за верхню межу екрану
+                if (rect.top < 0) {
+                    window.scrollBy({
+                        top: rect.top - 80,
+                        behavior: "smooth"
+                    });
+                }
+            }, 100);
+        }
     });
+
+
+    // const drops = document.querySelectorAll(".dropdown");
+    //
+    // drops.forEach(drop => {
+    //     drop.addEventListener("click", (event) => {
+    //         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    //         const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
+    //
+    //         const isMobileSafari = isIOS && isSafari;
+    //
+    //         if (!isMobileSafari) {
+    //             // Блокуємо прокрутку сторінки без дергання
+    //             const scrollY = window.scrollY;
+    //             document.body.style.position = "fixed";
+    //             document.body.style.top = `-${scrollY}px`;
+    //             document.body.style.width = "100%";
+    //
+    //             // Додаємо корекцію для ширини, щоб уникнути стрибків сторінки
+    //             const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    //             if (scrollbarWidth > 0) {
+    //                 document.body.style.paddingRight = `${scrollbarWidth}px`;
+    //             }
+    //
+    //             setTimeout(() => {
+    //                 const savedScrollY = Math.abs(parseInt(document.body.style.top, 10));
+    //                 document.body.style.position = "";
+    //                 document.body.style.top = "";
+    //                 document.body.style.width = "";
+    //                 document.body.style.paddingRight = "";
+    //
+    //                 window.scrollTo(0, savedScrollY);
+    //             }, 0);
+    //         } else {
+    //             // Для iOS використовуємо alternative спосіб
+    //             setTimeout(() => {
+    //                 drop.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    //             }, 100);
+    //         }
+    //
+    //         drop.classList.toggle("open");
+    //     });
+    // });
 
 
 
