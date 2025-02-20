@@ -432,7 +432,11 @@
     }
 
     function refreshLvl(currentLvl, lvlStatus){
-        if(!userId) return
+        if(userId === null) {
+            document.querySelector(".bonus__progress").style.margin = "0"
+            document.querySelector(".bonus__progress-wrap").style.opacity = "0"
+            return
+        }
         levels.forEach((lvl, i) =>{
             lvl.classList.remove("_active")
             lvl.classList.remove("_done")
@@ -763,7 +767,7 @@
                 const scrollY = window.scrollY;
                 document.body.style.position = "fixed";
                 document.body.style.top = `-${scrollY}px`;
-                document.body.style.width = "100vw";
+                document.body.style.width = "100%";
 
                 // Додаємо корекцію для ширини, щоб уникнути стрибків сторінки
                 const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
