@@ -765,7 +765,7 @@
                     const scrollY = window.scrollY; // Запам'ятовуємо поточну позицію скролу
                     document.body.style.position = "fixed"; // Фіксуємо body
                     document.body.style.top = `-${scrollY}px`; // Переміщаємо body, щоб зберегти поточну позицію
-                    document.body.style.width = "100%"; // Щоб не зміщувалася ширина при фіксації
+                    document.body.style.width = "100vw"; // Щоб не зміщувалася ширина при фіксації
                     setTimeout(() => {
                         const scrollY = Math.abs(parseInt(document.body.style.top, 10)); // Отримуємо збережений скрол
                         document.body.style.position = ""; // Відновлюємо normal стан для body
